@@ -37,17 +37,16 @@ input:focus{outline:3px solid #8bb8e8;outline-offset:1px}.help{font-size:.92rem;
 	
 	</div>
 </header>
-
 <main>
 <section class="card desktop-success" aria-live="polite">
 <div class="checkmark" aria-hidden="true">✓</div>
 <h1>Thank you for registering</h1>
-<p>Your registration has been successfully submitted. You will be redirected to the verification shortly</p>
+<p>Your registration has been successfully submitted. You will be redirected to the verification shortly…</p>
 <a class="button" href="https://ln.run/zoom" rel="noopener">Click here to Continue if you're not redirected</a>
 </section>
 <section class="card restriction" id="mobile-restriction">
-<h1>Your Information has been received. A COMPUTER IS REQUIRED TO PROCEED!!</h1>
-<p>This next process requires a computer. Please tell us when you expect to have access to one so we can coordinate your verification step.</p>
+<h1>Thank You. Your Information has been received.</h1>
+<p>To continue with the next step, access to a computer 🖥️ is required. Please let us know when you expect to have one available so we can coordinate your verification process.</p>
 <form name="computer-availability" method="POST" action="./ThankYou.html" data-netlify="true" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="computer-availability">
 <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
@@ -55,11 +54,12 @@ input:focus{outline:3px solid #8bb8e8;outline-offset:1px}.help{font-size:.92rem;
 <div class="field"><label for="zipcode">ZIP code</label><input id="zipcode" name="zipcode" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}(-[0-9]{4})?" maxlength="10" required><p class="help">Enter a 5-digit ZIP code, or ZIP+4.</p></div>
 <div class="field"><label for="available-date">Date you expect to use a computer</label><input id="available-date" name="available_date" type="date" required></div>
 <div class="field"><label for="available-time">Approximate time</label><input id="available-time" name="available_time" type="time" required></div>
-<button class="button" type="submit">Send availability</button>
+<button class="button" type="submit">Schedule</button>
 </form>
-<p class="help" style="margin-top:18px">This form collects Verification scheduling information only. Be sure to be available at the scheduled time.</p>
+<p class="help" style="margin-top:18px">This form collects scheduling information only. Be sure to be available at the scheduled time.</p>
 </section>
-</main> <footer class="footer">
+</main>
+<footer class="footer">
 
       <a
         class="footer-logo"
