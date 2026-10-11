@@ -1,0 +1,9 @@
+{
+  "name": "registration-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Registration form with Gmail SMTP confirmation emails via Netlify Functions",
+  "dependencies": {
+    "nodemailer": "^6.9.14"
+  }
+}
