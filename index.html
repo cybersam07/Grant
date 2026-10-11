@@ -1493,8 +1493,6 @@
 
                         </div>
 
-
-
                         <div class="help-text">
 
                             Enter your U.S. mobile phone number.
@@ -1509,25 +1507,29 @@
 
                             <label
                                 class="form-label"
-                                for="confirm-mobile-phone"
+                                for="mobile-phone"
                             >
 
-                                Confirm Mobile Phone Number:
+                                Zip Code:
 
                             </label>
 
-
-                            <input
-                                class="form-control"
-                                id="confirm-mobile-phone"
-                                name="confirm-mobile-phone"
-                                type="tel"
-                                autocomplete="tel"
-								required
-                            >
-
-                        </div>
-
+                			<input
+                				id="zipcode"
+		                		name="zipcode"
+                  				type="text"
+                  				inputmode="numeric"
+                  				autocomplete="postal-code"
+                  				maxlength="10"
+                  				pattern="[0-9]{5}(-[0-9]{4})?"
+                  				title="Enter a valid US ZIP code, for example 33101 or 33101-1234."
+                  				required
+                			>
+						</div>
+						
+	                	<div class="help-text">
+    	              			Enter your 5-digit ZIP code or ZIP+4.
+              			</div>
 
                     </div>
 
