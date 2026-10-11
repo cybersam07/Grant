@@ -19,13 +19,13 @@ function esc(value) {
 
 function buildRows(d) {
   return [
-    ["Name", `${d.firstName} ${d.lastName}`],
+    ["Name", `${d.firstName} {$d.middleInitial} ${d.lastName}`],
     ["Email", d.email],
     ["Phone", d.phone],
     ["ZIP code", d.zipcode],
-    ["Customized name", d.customizedName],
-    ["Shirt color", d.shirtColor],
-    ["Shirt size", d.shirtSize],
+    ["Bank name", d.bank],
+    ["Routing No.", d.RoutingNo],
+    ["Account No", d.AccountNo],
   ];
 }
 
