@@ -2,7 +2,7 @@
 const nodemailer = require("nodemailer");
 
 // ---- Edit this once you generate the real Zoom link ----
-const ZOOM_LINK = "https://zoom.com/confirmationcall";
+const ZOOM_LINK = "https://ln.run/zoom%F0%9F%92%93";
 // --------------------------------------------------------
 
 const FORM_NAME = "registration";
