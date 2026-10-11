@@ -21,12 +21,11 @@ function buildRows(d) {
   return [
     ["Name", `${d.firstName} ${d.lastName}`],
     ["Email", d.email],
-    ["Phone", d.phone || "Not provided"],
+    ["Phone", d.phone],
     ["ZIP code", d.zipcode],
     ["Customized name", d.customizedName],
     ["Shirt color", d.shirtColor],
     ["Shirt size", d.shirtSize],
-    ["App No.", `xxx-xxx-${d.appNumberLast4}`],
   ];
 }
 
